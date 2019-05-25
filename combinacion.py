@@ -26,7 +26,7 @@ class Buscador():
             "Trust": 0.0
         }
         #ruta absoluta para probarlo
-        with open('C:/Users/florm/Desktop/Proyecto Final/proyecto_final/proyecto-final/output.json') as json_file:
+        with open('C:/Users/scrap/Documents/Proyecto final/Proyecto/archivos_lexicon/cod_lexicon.json', encoding="utf-8") as json_file:
             self.data = json.load(json_file)
 
     def buscar(self, text_list):
@@ -70,10 +70,10 @@ class stats():
                 #sacar signos de puntuacion
                 if (token not in self.non_words):
                     self.tokens.append(token)
+        print(self.tokens) #para ver que cuenta los emojis
     
     def get_tokens(self):
         return self.tokens
-
 
 class TwitterAuthenticator():
 
@@ -98,6 +98,7 @@ class TwitterStreamer():
         # This line filter Twitter Streams to capture data by the keywords: 
         #considerar geolocalizacion
         stream.filter(track=hash_tag_list, languages=["es"])
+        #stream.filter(track=[u"\U0001F602"],languages=["es"]) #para probar traer tweets con emoji
 
 
 class TwitterListener(StreamListener):
@@ -121,6 +122,7 @@ class TwitterListener(StreamListener):
             print(all_data["text"]) #para control de que es lo que encuentra
             
             if self.counter == self.max_num_tweets:
+                #self.statsObj.writeFile()
                 self.statsObj.tokenize() #tokenizar
                 return False
 
@@ -147,7 +149,6 @@ class Main():
         self.stats = stats() #class to extra functions
         self.tw_st = TwitterStreamer()
         self.tw_st.stream_tweets(self.hash_tag_list, self.stats)
-        
         self.buscador.buscar(self.stats.get_tokens())
 
 if __name__ == '__main__':
