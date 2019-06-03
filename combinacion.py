@@ -8,13 +8,13 @@ from nltk.tokenize import TweetTokenizer
 import twitter_credentials
 from string import punctuation
 
+#Clase encargada de cargar el lexicon en un diccionario y mantener los datos
+#En esta clase se obtiene la cantidad de cada emocion encontrada en las palabras tokenizadas y se guarda en un diccionario de emociones
 class Buscador():
-    #Clase encargada de cargar el lexicon en un diccionario y mantener los datos
-    #En esta clase se obtiene la cantidad de cada emocion encontrada en las 
-    # palabras tokenizadas y se guarda en un diccionario de emociones
     def __init__(self):
         #diccionario con valores iniciales para cada emocion
         self.emotions = self.crear_diccionario_emociones()
+
         #lista de diccionarios con emociones calculadas para cada tweet
         self.emotions_by_tweet = []
 
@@ -22,10 +22,11 @@ class Buscador():
         with open('C:/Users/florm/Desktop/Proyecto final/proyecto final/proyecto-final/cod_lexicon.json', encoding="utf-8") as json_file:
             self.data = json.load(json_file)
 
+    #funcion que busca palabras en el lexicon y las cuenta
     def buscar(self, text_list, tweet_tokens_list):
         for tweet_tokens in tweet_tokens_list:
             contador_tweet = self.crear_diccionario_emociones()
-            #busca cada palabra de la lista recibida en el lexicon y suma en un cotnador total y otro para el tweet actual
+            #busca cada palabra de la lista recibida en el lexicon y suma en un contador total y otro para el tweet actual
             for word in tweet_tokens:
                 if word in self.data: #si la palabra esta en el lexicon
                     emotion = self.data[word] #tomo las emociones de plutchik
@@ -43,6 +44,15 @@ class Buscador():
 
         print("--------------------Emotion items total---------------------")
         print(self.emotions.items())
+
+    def total_emotion(self, emotion):
+        total = 0
+        if emotion in self.emotions:
+            for tweet_emotions in self.emotions_by_tweet:
+                if tweet_emotions.get(emotion) != 0.0:
+                    total += 1
+            return total
+        return -1
 
     def crear_diccionario_emociones(self):
     #creo contador emociones del tweet actual e inicializo todas las emociones en 0
@@ -62,7 +72,7 @@ class Buscador():
         return emociones
 
    
-class stats():
+class Stats():
     def __init__(self):
         #lista de tweets a tokenizar
         self.tweets_list = [] 
@@ -125,8 +135,8 @@ class TwitterAuthenticator():
         auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
         return auth
 
+#Class for streaming and processing live tweets.
 class TwitterStreamer():
-    #Class for streaming and processing live tweets.
     def __init__(self):
         self.twitter_autenticator = TwitterAuthenticator()    
 
@@ -141,8 +151,8 @@ class TwitterStreamer():
         stream.filter(track=hash_tag_list, languages=["es"])
         #stream.filter(track=[u"\U0001F602"],languages=["es"]) #para probar traer tweets con emoji
 
+#This is a basic listener that just prints received tweets to stdout.
 class TwitterListener(StreamListener):
-    #This is a basic listener that just prints received tweets to stdout.
     def __init__(self, statsObj, max_num_tweets):
         self.counter = 0
         self.max_num_tweets = max_num_tweets
@@ -183,11 +193,18 @@ class Main():
         #Creo una instancia de buscador (es donde se crea el mapeo)
         self.buscador = Buscador() #self es el objeto instanciado de esa clase sobre el cual se está invocando el método
         
-        self.stats = stats() #class to extra functions
+        self.stats = Stats() #class to extra functions
         self.tw_st = TwitterStreamer()  #creo intancia
         self.tw_st.stream_tweets(self.hash_tag_list, self.stats) #Obtener los tweets a partir de la instancia twitter streamer
        
         self.buscador.buscar(self.stats.get_tokens(), self.stats.get_tweet_tokens_list()) 
+
+        print("Cantidad de tweets positivos ")
+        print(self.buscador.total_emotion("Positive"))
+        print("Cantidad de tweets felicidad ")
+        print(self.buscador.total_emotion("Felicidad"))
+
+
 
 if __name__ == '__main__':
 
