@@ -1,4 +1,5 @@
 import json
+import os
 
 class Search_Engine():
     #Clase encargada de cargar el lexicon en un diccionario y mantener los datos
@@ -11,7 +12,7 @@ class Search_Engine():
         self.emotions_by_tweet = []
 
         #ruta absoluta para probarlo
-        with open('C:/Users/scrap/Documents/Proyecto final/App-Integracion/backend/flaskr/cod_lexicon.json', encoding="utf-8") as json_file:
+        with open(os.path.realpath('../back-end/cod_lexicon.json'), encoding="utf-8") as json_file:
             self.data = json.load(json_file)
 
     def getData(self):
