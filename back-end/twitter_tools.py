@@ -19,7 +19,7 @@ class TwitterTools():
         self.twitter_autenticator = TwitterAuthenticator() 
         self.tweets = []   
 
-    def search_tweets(self, hash_tag_list, date_since):
+    def search_tweets(self, hash_tag_list, until_date, total):
         # This handles Twitter authentification 
         #Si pasamos lista de palabras busca que esten todas, hay que buscar una por una
         
@@ -27,10 +27,11 @@ class TwitterTools():
         api = tw.API(auth)
         for key in hash_tag_list:
             query = key+" -filter:retweets"
-            tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', since= date_since).items(20)        
+            tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
             for status in tweetslist:
                 self.tweets.append(status.full_text)
-                #print(status.full_text)
+                print(status.id)
+                print(status.created_at)
 
         return self.tweets
 

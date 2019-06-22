@@ -10,10 +10,8 @@ class NLTools():
 
         #lista donde se almacenan listas de tokens correspondientes a cada tweet
         self.tweet_tokens_list = []
-        self.listatokens = [] #creo lista de tokens para tweet actual
 
-        #lista de listas donde se guardan las emociones para cada tweet
-        self.tweet_emotions_list = []
+        self.listatokens = []
 
         #punctuation to remove. Crea una lista con puntuacion y digitos a remover de mi conjunto de texto (tweets)
         self.non_words = list(punctuation) 
@@ -23,13 +21,12 @@ class NLTools():
     def get_tweet_tokens_list(self):
         return self.tweet_tokens_list
 
-    def get_tweets_emotions_list(self):
-        return self.tweet_emotions_list
-
     def tokenize(self, text_list):
+        #text_list: lista de tweets
+        #devuelve lista de listas de tokens, cada lista representa tokenizacion del tweet de mismo indice
         #tokeniza la lista de tweets almacenada hasta el momento
         tknzr = TweetTokenizer(preserve_case=False) #Llama a la clase importada que tokeniza.preserve_case=False para poner todo en minuscula
-        listatokens = []
+        self.listatokens = []
 
         for tweet in text_list:
             tokens = tknzr.tokenize(tweet) #tweet actual tokenizado
@@ -38,16 +35,16 @@ class NLTools():
                 #sacar signos de puntuacion al tweet actual tokenizado
                 if (token not in self.non_words):
                     self.tokens.append(token) #agrego token a la lista de tokens de todos los tweets
-                    listatokens.append(token) #agrego token a la lista de tokens del tweet actual
+                    self.listatokens.append(token) #agrego token a la lista de tokens del tweet actual
             #agrego lista de tokens del tweet actual a la lista de tokens para cada tweet
-            self.tweet_tokens_list.append(listatokens)
-            listatokens.clear() #vacio lista para vovler a crear una lista para el proximo tweet
+            self.tweet_tokens_list.append(self.listatokens)
+            self.listatokens = [] #vacio lista para vovler a crear una lista para el proximo tweet
            
-        print("-----------------------------------cant elementos tweet_tokens------------------------------------")
-        print(len(self.tweet_tokens_list))
-        print(self.tweet_tokens_list[0])
+        #print("-----------------------------------cant elementos tweet_tokens------------------------------------")
+        #print(len(self.tweet_tokens_list))
+        #print(self.tweet_tokens_list[0])
+        return self.tweet_tokens_list
 
-        #print(self.tokens) #para ver que cuenta los emojis
     
     def get_tokens(self):
         return self.tokens
