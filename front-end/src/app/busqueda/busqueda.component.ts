@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse, EmotionsService } from '../emotions.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-busqueda',
