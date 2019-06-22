@@ -1,6 +1,33 @@
-   <p>Ingrese hashtags de busqueda:
-        <input type="text" [(ngModel)] = "hashtags" />
-      </p>
-      
-      <!--Mostramos el valor de la propiedad-->
-      <p>Hashtags a buscar: {{hashtags}}</p>
+<form >
+    <p>Ingrese hashtags de busqueda:
+        <input type="text" name="hashtag" [(ngModel)] = "hashtag" />
+    </p>
+    <!--Mostramos el valor de la propiedad-->
+    <p>Hashtags a buscar: {{hashtag}}</p>
+    <label class="col-md-4 control-label">Fecha:</label>
+    <div class="row">
+        <div class="col-md-6">
+          <label class="col-md-4 control-label">Fecha:</label>
+          <div class="col-md-8">
+            <div class='input-group date' id='dateWorkshopManager'>
+              <input type="text" id="workshop_manager_date" class="form-control" ng-model="workshop.date">
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="col-md-4 control-label">Hora:</label>
+          <div class="col-md-8">
+            <div class='input-group date' id='hourWorkshopManager'>
+              <input type="text"  class="form-control" ng-model="workshop.date">
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-time"></span>
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <button (click)="addHashtag()">Agregar</button>
+</form>
