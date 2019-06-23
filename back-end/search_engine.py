@@ -1,3 +1,4 @@
+import os
 import json
 import os
 
@@ -19,8 +20,7 @@ class Search_Engine():
         return self.data
 
     #funcion que busca palabras en el lexicon y las cuenta
-    def buscar(self, text_list, tweet_tokens_list):
-        #text_list: tokens totales
+    def compute_emotions(self, tweet_tokens_list):
         #tweet_tokens_list: lista de listas de tokens, una por cada tweet
         for tweet_tokens in tweet_tokens_list:
             contador_tweet = self.crear_diccionario_emociones()
@@ -34,14 +34,15 @@ class Search_Engine():
                         self.emotions[e] = contador + float(emotion[e])  #sumo el valor de la emocion al contador de emociones global 
             self.emotions_by_tweet.append(contador_tweet)
 
-        print("-----------cantidad de lista de emociones de tweets----------")
-        print(len(self.emotions_by_tweet))
+        #print("-----------cantidad de lista de emociones de tweets----------")
+        #print(len(self.emotions_by_tweet))
 
-        print("-----------emotions_by_tweet--------------")
-        print(self.emotions_by_tweet)
+        #print("-----------emotions_by_tweet--------------")
+        #print(self.emotions_by_tweet)
 
-        print("--------------------Emotion items total---------------------")
-        print(self.emotions.items())
+        #print("--------------------Emotion items total---------------------")
+        #print(self.emotions.items())
+        return self.emotions_by_tweet
 
     def total_emotion(self, emotion):
         total = 0
