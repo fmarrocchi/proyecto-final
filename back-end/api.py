@@ -1,5 +1,6 @@
 import os
-from flask import Flask, request, jsonify
+from datetime import date
+from flask import Flask, request, jsonify, abort
 from flask_restful import Api, Resource
 import search_engine
 import twitter_tools
@@ -15,17 +16,24 @@ api = Api(app)
 
 class Search(Resource):
     def get(self):
-        #URL principal, requiere en keywords las palabras a buscar y en since-date la fecha 
-        buscador = search_engine.Search_Engine()
-        queries = request.args.getlist(KEYWORDS)      
-        #if queries.len == 0 return errorMessage  
+        #URL principal, requiere en keywords las palabras a buscar y en since-date la fecha         
+        queries = request.args.getlist(KEYWORDS)          
         #s_date = request.args.get(SINCE_DATE)
         u_date = request.args.get(UNTIL_DATE)
         tweet_limit = int(request.args.get(LIMIT))
+        print(queries)
+        if queries is None or (len(queries) is 1 and len(queries[0]) is 0):
+            abort(400)
+        
+        if u_date is None:
+            u_date = date.today()
 
-        twt = twitter_tools.TwitterTools()
-        if tweet_limit == None:
+        if tweet_limit is None:
             tweet_limit = 500
+
+        buscador = search_engine.Search_Engine()
+        twt = twitter_tools.TwitterTools()
+        
         tweets_list = twt.search_tweets(queries, u_date, tweet_limit)#obtengo tweets
 
         nl_tool = NLTools.NLTools()
@@ -33,14 +41,7 @@ class Search(Resource):
         
         analyzer = search_engine.Search_Engine()
         dicts_list = analyzer.compute_emotions(tokens_lists)#calculo emociones
-        """resp = {
-            "success": True,
-            "message": "Emotions successfully calculated",
-            "data": {
-                "tweets": tweets_list,
-                "emotions": dicts_list
-            }            
-        }"""
+        
         resp_data = {
             "tweets" : tweets_list,
             "emotions" : dicts_list

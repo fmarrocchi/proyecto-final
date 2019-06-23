@@ -30,8 +30,6 @@ class TwitterTools():
             tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
             for status in tweetslist:
                 self.tweets.append(status.full_text)
-                print(status.id)
-                print(status.created_at)
 
         return self.tweets
 
