@@ -7,9 +7,14 @@
     <p>Hashtags a buscar: {{hashtags}}</p>
   </div>
   <div class="form-group">
-    <label for="fecha">Datos hasta la fecha</label>
+    <label for="fecha_hasta">Datos hasta la fecha</label>
     <input type="date" [(ngModel)] = "fecha_hasta" name="fecha_hasta" class="form-control" id="fecha_hasta">
     <p>*El máximo permitido es 7 días atrás</p>
+  </div>
+  <div class="form-group">
+    <label for="cant_tweets">Limitar los tweets buscados a: </label>
+    <input type="range" min="0" max="3000" [(ngModel)] = "limite" name="limite" class="form-control" id="limite">
+    <p> {{limite}} </p>
   </div>
   <button type="submit" class="btn btn-success">Buscar</button>
 

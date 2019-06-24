@@ -9,7 +9,8 @@ import {NgForm} from '@angular/forms';
 })
 export class BusquedaComponent implements OnInit {
   public hashtags="";
-  public fecha_hasta = new Date().toISOString().substring(0,10); 
+  public fecha_hasta = new Date().toISOString().substring(0,10);
+  public limite = 100; 
   public resp: ApiResponse;
   error: any;
 
@@ -21,7 +22,8 @@ export class BusquedaComponent implements OnInit {
   onSubmit(form) { 
     var keywords:string = form.value.keywords;
     var fecha:string = new Date(form.value.fecha_hasta).toISOString().substr(0,10);
-    this.emotionsService.getEmotions(keywords, fecha)
+    var cant:number = form.value.limite;
+    this.emotionsService.getEmotions(keywords, fecha, cant)
       .subscribe(
         (data:ApiResponse) => {
           this.resp = {
