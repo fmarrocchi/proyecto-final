@@ -6,7 +6,7 @@ class Search_Engine():
     #Clase encargada de cargar el lexicon en un diccionario y mantener los datos
     #En esta clase se obtiene la cantidad de cada emocion encontrada en las palabras tokenizadas y se guarda en un diccionario de emociones
     def __init__(self):
-        #diccionario con valores iniciales para cada emocion
+        #diccionario global con valores iniciales para cada emocion
         self.emotions = self.crear_diccionario_emociones()
 
         #lista de diccionarios con emociones calculadas para cada tweet
@@ -18,6 +18,12 @@ class Search_Engine():
 
     def getData(self):
         return self.data
+    
+    def getEmocionesTotal(self, total_tweets):
+        emotions = self.emotions
+        for e in emotions:
+            emotions[e] = emotions[e] / total_tweets
+        return emotions
 
     #funcion que busca palabras en el lexicon y las cuenta
     def compute_emotions(self, tweet_tokens_list):
@@ -33,15 +39,6 @@ class Search_Engine():
                         contador_tweet[e]= contador_tweet.get(e) + float(emotion[e]) #sumo el valor de la emocion al contador del tweet actual 
                         self.emotions[e] = contador + float(emotion[e])  #sumo el valor de la emocion al contador de emociones global 
             self.emotions_by_tweet.append(contador_tweet)
-
-        #print("-----------cantidad de lista de emociones de tweets----------")
-        #print(len(self.emotions_by_tweet))
-
-        #print("-----------emotions_by_tweet--------------")
-        #print(self.emotions_by_tweet)
-
-        #print("--------------------Emotion items total---------------------")
-        #print(self.emotions.items())
         return self.emotions_by_tweet
 
     def total_emotion(self, emotion):

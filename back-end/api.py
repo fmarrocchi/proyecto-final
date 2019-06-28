@@ -41,10 +41,13 @@ class Search(Resource):
         
         analyzer = search_engine.Search_Engine()
         dicts_list = analyzer.compute_emotions(tokens_lists)#calculo emociones
+
+        emocionesTotal = analyzer.getEmocionesTotal(tweet_limit)
         
         resp_data = {
             "tweets" : tweets_list,
-            "emotions" : dicts_list
+            "emotions" : dicts_list,
+            "porcentaje_total" : emocionesTotal
         }
         #para permitir requests de cualquier dominio
         #evaluar reemplazar por libreria CORS, porque impide el uso de cookies
