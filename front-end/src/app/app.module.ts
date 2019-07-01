@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { HttpClientModule }    from '@angular/common/http';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,

@@ -39,10 +39,9 @@ class Search(Resource):
         nl_tool = NLTools.NLTools()
         tokens_lists = nl_tool.tokenize(tweets_list)#tokenizo tweets
         
-        analyzer = search_engine.Search_Engine()
-        dicts_list = analyzer.compute_emotions(tokens_lists)#calculo emociones
+        dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
 
-        emocionesTotal = analyzer.getEmocionesTotal(tweet_limit)
+        emocionesTotal = buscador.getEmocionesTotal(tweet_limit)
         
         resp_data = {
             "tweets" : tweets_list,

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse, EmotionsService } from '../emotions.service';
 import {NgForm} from '@angular/forms';
-import { Chart } from 'chart.js';
+import { ChartdataService } from '../chartdata.service';
+
+
 
 @Component({
   selector: 'app-busqueda',
@@ -12,51 +14,17 @@ export class BusquedaComponent implements OnInit {
   public hashtags="";
   public fecha_hasta = new Date().toISOString().substring(0,10);
   public limite = 100; 
-  public resp: ApiResponse;
-  public chart: any = null;
+  public resp: ApiResponse;  
   error: any;
+  public cdata: Array<number>;
+  
 
-  constructor(private emotionsService: EmotionsService) { }
+  constructor(private emotionsService: EmotionsService,
+    private chartData: ChartdataService) { }
 
   ngOnInit() {
-    this.chart = new Chart("realtime", {
-      type: 'bar',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
-    
-  });
-}
+    this.chartData.currentData.subscribe(chart => this.cdata = chart)
+  }
 
   onSubmit(form) { 
     var keywords:string = form.value.keywords;
@@ -67,13 +35,25 @@ export class BusquedaComponent implements OnInit {
         (data:ApiResponse) => {
           this.resp = {
           tweets: data["tweets"],
-          emotions: data["emotions"]};
+          emotions: data["emotions"],
+          average: data["porcentaje_total"]};
           //muestro respuesta por consola
-          console.log(this.resp)
+          console.log(this.resp);
+          this.updateChart()
         },
         error => this.error = error
         );
     console.log(form.value)
   }
 
+  updateChart(){
+    var newData: Array<number> = new Array()
+    //paso valores a arreglo para actualizar los datos del grafico
+    for(let e in this.resp.average){
+      newData.push(this.resp.average[e])
+    }
+    console.log("Nuevo "+newData);
+    this.chartData.changeData(newData);
+  }
+  
 }
