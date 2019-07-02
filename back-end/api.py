@@ -42,7 +42,7 @@ class Search(Resource):
         analyzer = search_engine.Search_Engine()
         dicts_list = analyzer.compute_emotions(tokens_lists)#calculo emociones
 
-        emocionesTotal = analyzer.getEmocionesTotal(tweet_limit)
+        emocionesTotal = analyzer.getPorcentajeEmocionesTotal(tweet_limit)
         
         resp_data = {
             "tweets" : tweets_list,

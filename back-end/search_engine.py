@@ -9,6 +9,9 @@ class Search_Engine():
         #diccionario global con valores iniciales para cada emocion
         self.emotions = self.crear_diccionario_emociones()
 
+        #arreglo con porcentaje total para cada emocion
+        self.porcentaje_total = []
+
         #lista de diccionarios con emociones calculadas para cada tweet
         self.emotions_by_tweet = []
 
@@ -19,11 +22,13 @@ class Search_Engine():
     def getData(self):
         return self.data
     
-    def getEmocionesTotal(self, total_tweets):
+    def getPorcentajeEmocionesTotal(self, total_tweets):
         emotions = self.emotions
+        porcentaje_total = self.porcentaje_total
+        #calculo porcentaje de cada emocion segun el total de tweets obtenidos
         for e in emotions:
-            emotions[e] = emotions[e] / total_tweets
-        return emotions
+            porcentaje_total.append(emotions[e] / total_tweets)
+        return porcentaje_total
 
     #funcion que busca palabras en el lexicon y las cuenta
     def compute_emotions(self, tweet_tokens_list):
