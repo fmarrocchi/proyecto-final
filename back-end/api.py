@@ -41,7 +41,7 @@ class Search(Resource):
         
         dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
 
-        emocionesTotal = buscador.getEmocionesTotal(tweet_limit)
+        emocionesTotal = buscador.getPorcentajeEmocionesTotal(tweet_limit)
         
         resp_data = {
             "tweets" : tweets_list,
@@ -52,6 +52,7 @@ class Search(Resource):
         #evaluar reemplazar por libreria CORS, porque impide el uso de cookies
         resp = app.make_response((jsonify(resp_data), 200)) 
         resp.headers['Access-Control-Allow-Origin'] = '*'
+        print(resp.headers)
         return  resp
 
    

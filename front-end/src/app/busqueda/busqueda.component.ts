@@ -4,8 +4,6 @@ import {NgForm} from '@angular/forms';
 import { ChartdataService } from '../chartdata.service';
 import { TweetsListService } from '../tweets-list.service';
 
-
-
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
@@ -30,7 +28,7 @@ export class BusquedaComponent implements OnInit {
     this.twList.currentData.subscribe(tweets => this.tweets = tweets)
   }
 
-  onSubmit(form) { 
+onSubmit(form) { 
     var keywords:string = form.value.keywords;
     var fecha:string = new Date(form.value.fecha_hasta).toISOString().substr(0,10);
     var cant:number = form.value.limite;
@@ -47,18 +45,12 @@ export class BusquedaComponent implements OnInit {
           this.updateTweetsList();
         },
         error => this.error = error
-        );
-    console.log(form.value)
+        );    
   }
 
-  updateChart(){
-    var newData: Array<number> = new Array()
-    //paso valores a arreglo para actualizar los datos del grafico
-    for(let e in this.resp.average){
-      newData.push(this.resp.average[e])
-    }
-    console.log("Nuevo "+newData);
-    this.chartData.changeData(newData);
+  updateChart(){    
+    console.log("Nuevo "+this.resp.average);
+    this.chartData.changeData(this.resp.average);
   }
 
   updateTweetsList(){

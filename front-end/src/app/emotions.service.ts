@@ -6,7 +6,7 @@ import { catchError } from 'rxjs/operators';
 export interface ApiResponse {
   tweets: Array<string>;
   emotions: Array<Object>;
-  average: Object
+  average: Array<number>
 }
 
 @Injectable({ 
