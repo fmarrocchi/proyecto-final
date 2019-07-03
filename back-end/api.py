@@ -36,12 +36,14 @@ class Search(Resource):
         
         tweets_list = twt.search_tweets(queries, u_date, tweet_limit)#obtengo tweets
 
+        #streaming
+
         nl_tool = NLTools.NLTools()
         tokens_lists = nl_tool.tokenize(tweets_list)#tokenizo tweets
         
         dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
 
-        emocionesTotal = buscador.getEmocionesTotal(tweet_limit)
+        emocionesTotal = buscador.getPorcentajeEmocionesTotal(tweet_limit)
         
         resp_data = {
             "tweets" : tweets_list,
@@ -52,6 +54,7 @@ class Search(Resource):
         #evaluar reemplazar por libreria CORS, porque impide el uso de cookies
         resp = app.make_response((jsonify(resp_data), 200)) 
         resp.headers['Access-Control-Allow-Origin'] = '*'
+
         return  resp
 
    

@@ -37,19 +37,9 @@ onSubmit(form) {
           average: data["porcentaje_total"]};
           //muestro respuesta por consola
           console.log(this.resp);
+          this.chartData.changeData(this.resp.average);
         },
         error => this.error = error
         );    
   }
-
-  updateChart(){
-    var newData: Array<number> = new Array()
-    //paso valores a arreglo para actualizar los datos del grafico
-    for(let e in this.resp.average){
-      newData.push(this.resp.average[e])
-    }
-    console.log("Nuevo "+newData);
-    this.chartData.changeData(newData);
-  }
-  
 }

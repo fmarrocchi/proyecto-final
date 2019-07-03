@@ -11,6 +11,7 @@ export class ChartComponent implements OnInit {
 
     public chart: any;
     cdata: Array<number>;
+  
   constructor(private chartData: ChartdataService) { }
 
   ngOnInit() {
@@ -20,8 +21,8 @@ export class ChartComponent implements OnInit {
         data: {
           labels: ['Positive', 'Negative', 'Anger', 'Anticipation', 'Disgust', 'Fear', 'Joy', 'Sadness', 'Surprise', 'Trust'],
           datasets: [{
-            label: "Ejemplo",
-            data: [0, 1, 3, 5, 1, 0, 4, 2, 2, 1],
+            label: "Porcentaje emociones",
+            data: [1, 0.1, 0.3, 0.5, 0.1, 0.0, 0.4, 0.2, 0.2, 0.1],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -29,6 +30,10 @@ export class ChartComponent implements OnInit {
               'rgba(75, 192, 192, 0.2)',
               'rgba(153, 102, 255, 0.2)',
               'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -36,7 +41,11 @@ export class ChartComponent implements OnInit {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
             ],
             borderWidth: 1
             }]
@@ -59,8 +68,7 @@ export class ChartComponent implements OnInit {
 
   updateChart(){
       //Actualiza solo los valores de los datos
-      this.chart.data.datasets[0]['data']= this.cdata;      
-      console.log(this.chart.data.datasets[0]);
+      this.chart.data.datasets[0]['data'] = this.cdata;
       this.chart.update()
   }
 }
