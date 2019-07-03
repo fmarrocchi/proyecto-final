@@ -25,7 +25,7 @@ export class BusquedaComponent implements OnInit {
 
   ngOnInit() {
     this.chartData.currentData.subscribe(chart => this.cdata = chart);
-    this.twList.currentData.subscribe(tweets => this.tweets = tweets)
+    this.twList.currentTweets.subscribe(tweets => this.tweets = tweets)
   }
 
 onSubmit(form) { 
@@ -54,7 +54,7 @@ onSubmit(form) {
   }
 
   updateTweetsList(){
-    this.twList.changeData(this.resp.tweets)
+    this.twList.changeData(this.resp.tweets, this.resp.emotions)
   }
   
 }

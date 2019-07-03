@@ -5,8 +5,20 @@ import { catchError } from 'rxjs/operators';
 
 export interface ApiResponse {
   tweets: Array<string>;
-  emotions: Array<Object>;
+  emotions: Array<EmotionDic>;
   average: Array<number>
+}
+export interface EmotionDic {
+  Positive: number;
+  Negative: number;
+  Anger: number;
+  Anticipation: number;
+  Disgust: number;
+  Fear: number;
+  Joy: number;
+  Sadness: number;
+  Surprise: number;
+  Trust: number
 }
 
 @Injectable({ 

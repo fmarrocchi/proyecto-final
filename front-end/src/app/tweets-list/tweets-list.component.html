@@ -1,9 +1,9 @@
 <h1>Tweets analizados</h1>
 <div class="list-group">
-  <div class="list-group-item card" *ngFor="let tweet of tweets">   
+  <div class="list-group-item card" *ngFor="let tweet of tweets; let indice=index">   
       <img class="card-img-left" src="../../assets/images/twitter-logo.png" />    
       <div class="card-body">               
-        <p class="card-text" >{{ tweet }}</p>
+        <p class="card-text" id="{{ indice+1 }}" [ngStyle] = "{'color': getColor(indice)}">{{ tweet }}</p>
       </div>    
   </div>
 </div>

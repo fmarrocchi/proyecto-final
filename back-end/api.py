@@ -21,7 +21,6 @@ class Search(Resource):
         #s_date = request.args.get(SINCE_DATE)
         u_date = request.args.get(UNTIL_DATE)
         tweet_limit = int(request.args.get(LIMIT))
-        print(queries)
         if queries is None or (len(queries) is 1 and len(queries[0]) is 0):
             abort(400)
         
