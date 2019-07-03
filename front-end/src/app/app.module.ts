@@ -7,14 +7,12 @@ import { AppComponent } from './app.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { ChartComponent } from './chart/chart.component';
-import { TweetsListComponent } from './tweets-list/tweets-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BusquedaComponent,
-    ChartComponent,
-    TweetsListComponent
+    ChartComponent
   ],
   imports: [
     BrowserModule,

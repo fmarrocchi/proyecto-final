@@ -23,12 +23,11 @@ class Search_Engine():
         return self.data
     
     def getPorcentajeEmocionesTotal(self, total_tweets):
-        #el arreglo retornado contiene el promedio para cada emocion
-        #ordenador de la forma: Positive, Negative, Anger, Anticipation, Disgust, Fear, Joy, Sadness, Surprise, Trust
+        emotions = self.emotions
         porcentaje_total = self.porcentaje_total
-        #calculo porcentaje de cada emocion segun el total de tweets obtenidos     
-        for e in self.emotions.keys():
-            porcentaje_total.append(self.emotions[e] / total_tweets)
+        #calculo porcentaje de cada emocion segun el total de tweets obtenidos
+        for e in emotions:
+            porcentaje_total.append(emotions[e] / total_tweets)
         return porcentaje_total
 
     #funcion que busca palabras en el lexicon y las cuenta

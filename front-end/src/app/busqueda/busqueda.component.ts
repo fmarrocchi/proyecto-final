@@ -21,7 +21,7 @@ export class BusquedaComponent implements OnInit {
 
   constructor(private emotionsService: EmotionsService,
     private chartData: ChartdataService,
-    private twList: TweetsListService) { }
+    private twList:TweetsListService) { }
 
   ngOnInit() {
     this.chartData.currentData.subscribe(chart => this.cdata = chart);
