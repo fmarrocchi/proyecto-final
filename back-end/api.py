@@ -54,7 +54,6 @@ class Search(Resource):
         #evaluar reemplazar por libreria CORS, porque impide el uso de cookies
         resp = app.make_response((jsonify(resp_data), 200)) 
         resp.headers['Access-Control-Allow-Origin'] = '*'
-
         return  resp
 
    
