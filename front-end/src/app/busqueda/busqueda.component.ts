@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiResponse, EmotionsService } from '../emotions.service';
 import {NgForm} from '@angular/forms';
 import { ChartdataService } from '../chartdata.service';
+import { TweetsListService } from '../tweets-list.service';
 
 
 
@@ -17,13 +18,16 @@ export class BusquedaComponent implements OnInit {
   public resp: ApiResponse;  
   error: any;
   public cdata: Array<number>;
+  public tweets: Array<string>;
   
 
   constructor(private emotionsService: EmotionsService,
-    private chartData: ChartdataService) { }
+    private chartData: ChartdataService,
+    private twList: TweetsListService) { }
 
   ngOnInit() {
-    this.chartData.currentData.subscribe(chart => this.cdata = chart)
+    this.chartData.currentData.subscribe(chart => this.cdata = chart);
+    this.twList.currentData.subscribe(tweets => this.tweets = tweets)
   }
 
   onSubmit(form) { 
@@ -39,7 +43,8 @@ export class BusquedaComponent implements OnInit {
           average: data["porcentaje_total"]};
           //muestro respuesta por consola
           console.log(this.resp);
-          this.updateChart()
+          this.updateChart();
+          this.updateTweetsList();
         },
         error => this.error = error
         );
@@ -54,6 +59,10 @@ export class BusquedaComponent implements OnInit {
     }
     console.log("Nuevo "+newData);
     this.chartData.changeData(newData);
+  }
+
+  updateTweetsList(){
+    this.twList.changeData(this.resp.tweets)
   }
   
 }
