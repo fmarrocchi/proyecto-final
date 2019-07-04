@@ -1,4 +1,5 @@
 import os
+import json
 from datetime import date
 from flask import Flask, request, jsonify, abort
 from flask_restful import Api, Resource
@@ -30,7 +31,7 @@ class Search(Resource):
         if tweet_limit is None:
             tweet_limit = 500
 
-        buscador = search_engine.Search_Engine()
+        """ buscador = search_engine.Search_Engine()
         twt = twitter_tools.TwitterTools()
         
         tweets_list = twt.search_tweets(queries, u_date, tweet_limit)#obtengo tweets
@@ -42,17 +43,22 @@ class Search(Resource):
         
         dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
 
-        emocionesTotal = buscador.getPorcentajeEmocionesTotal(tweet_limit)
+        emocionesTotal = buscador.getPorcentajeEmocionesTotal(tweet_limit) 
         
         resp_data = {
             "tweets" : tweets_list,
             "emotions" : dicts_list,
             "porcentaje_total" : emocionesTotal
-        }
+        }"""
+        resp_data = {}
+        with open(os.path.relpath('../back-end/datos-prueba.json'), encoding="utf-8") as file:
+            resp_data = json.load(file)
+
         #para permitir requests de cualquier dominio
         #evaluar reemplazar por libreria CORS, porque impide el uso de cookies
         resp = app.make_response((jsonify(resp_data), 200)) 
         resp.headers['Access-Control-Allow-Origin'] = '*'
+        print(resp.headers)
         return  resp
 
    

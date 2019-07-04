@@ -12,16 +12,16 @@ import { EmotionDic } from '../emotions.service';
 export class TweetsListComponent implements OnInit {
   //valores para el texto de los tweets
   readonly colores = {
-    "Positive": 'black',
-    "Negative": 'black',
-    "Anger": 'red',
-    "Anticipation": 'orange',
-    "Disgust": 'fuchsia',
-    "Fear": 'green',
-    "Joy": 'yellow',
-    "Sadness": 'blue',
-    "Surprise": 'aqua',
-    "Trust": 'lime',
+    "Positive": 'rgba(197, 17, 98, 1)',
+    "Negative": 'rgba(38, 198, 218, 1)',
+    "Anger": 'rgba(231, 76, 60, 1)',
+    "Anticipation": 'rgba(234, 156, 18, 1)',
+    "Disgust": 'rgba(165, 105, 189, 1)',
+    "Fear": 'rgba(34, 153, 84, 1)',
+    "Joy": 'rgba(244, 208, 63, 1)',
+    "Sadness": 'rgba(121, 134, 203, 1)',
+    "Surprise": 'rgba(84, 153, 199, 1)',
+    "Trust": 'rgba(46, 204, 113, 1)',
     "Neutro": 'black'
   }
 
