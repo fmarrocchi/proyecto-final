@@ -8,13 +8,15 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { ChartComponent } from './chart/chart.component';
 import { TweetsListComponent } from './tweets-list/tweets-list.component';
+import { TrendsComponent } from './trends/trends.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BusquedaComponent,
     ChartComponent,
-    TweetsListComponent
+    TweetsListComponent,
+    TrendsComponent
   ],
   imports: [
     BrowserModule,

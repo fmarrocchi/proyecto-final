@@ -1,0 +1,12 @@
+<div class="card border-light mb-3" style="max-width: 540px;" *ngFor="let trend of trends; let indice=index">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <h4>{{ indice+1 }}</h4>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p class="card-text">{{ trend }}</p>          
+        </div>
+      </div>
+    </div>
+  </div>

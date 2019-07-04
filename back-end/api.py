@@ -51,7 +51,7 @@ class Search(Resource):
             "porcentaje_total" : emocionesTotal
         }"""
         resp_data = {}
-        with open(os.path.relpath('../back-end/datos-prueba.json'), encoding="utf-8") as file:
+        with open(os.path.relpath('../back-end/datos_pruebas/datos-prueba.json'), encoding="utf-8") as file:
             resp_data = json.load(file)
 
         #para permitir requests de cualquier dominio
@@ -61,8 +61,19 @@ class Search(Resource):
         print(resp.headers)
         return  resp
 
+class TrendingTopics(Resource):
+    def get(self):
+        twt = twitter_tools.TwitterTools()
+        toRet = twt.trends()
+        resp_data = {
+            "trending_topics": toRet
+        }
+        resp = app.make_response((jsonify(resp_data), 200))
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
    
 api.add_resource(Search,'/emotions-analyzer')
+api.add_resource(TrendingTopics,'/emotions-analyzer/trends')
 
 if __name__ == '__main__':
     app.run(debug=True)

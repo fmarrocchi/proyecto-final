@@ -7,7 +7,10 @@ import tweepy as tw
 import twitter_credentials
 import json
 
+ARGENTINA_WOE_ID = 23424747
+
 class TwitterAuthenticator():
+    
     def authenticate_twitter_app(self):
         auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
         auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
@@ -32,6 +35,16 @@ class TwitterTools():
                 self.tweets.append(status.full_text)
 
         return self.tweets
+
+    def trends(self):
+        auth = self.twitter_autenticator.authenticate_twitter_app()
+        api = tw.API(auth)
+        arg_trends = api.trends_place(ARGENTINA_WOE_ID)
+        trends = json.loads(json.dumps(arg_trends))
+        toRet = [] 
+        for trend in trends[0]["trends"]:
+            toRet.append(trend["name"])
+        return toRet
 
     def stream_tweets(self, hash_tag_list, statsObj):
         # This handles Twitter authentification and the connection to Twitter Streaming API
