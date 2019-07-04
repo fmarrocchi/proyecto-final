@@ -24,11 +24,11 @@ export class ChartComponent implements OnInit {
 
       this.chartData.currentData.subscribe(data => {
         //separo valores en dos arreglos segun cada grafico
-        //primeros dos valores son pos y neg para el grafico de torta
+        //los primeros dos valores son pos y neg para el grafico de barra
         this.bardata[0] = data[0];
         this.bardata[1] = data[1];
 
-        //los valores restantes son las 8 emociones para el grafico de radas
+        //los valores restantes son las 8 emociones para el grafico de radar
         for (var i = 2; i < data.length; i++) {
           this.cdata[i-2] = data[i];
         }
@@ -39,7 +39,7 @@ export class ChartComponent implements OnInit {
         console.log(this.cdata);
 
         this.updateRadarChart(this.cdata);
-        this.updatePieChart(this.bardata)
+        this.updateBarChart(this.bardata)
       });
 
   }
@@ -108,7 +108,7 @@ export class ChartComponent implements OnInit {
       this.chart.update()
   }
 
-  updatePieChart(datosPieChart){
+  updateBarChart(datosPieChart){
     //Actualiza solo los valores de los datos
     this.barChart.data.datasets[0]['data'] = datosPieChart;
     this.barChart.update()
