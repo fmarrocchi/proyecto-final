@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse, EmotionsService } from '../emotions.service';
+import{ StreamingService} from '../streaming.service';
 import {NgForm} from '@angular/forms';
 import { ChartdataService } from '../chartdata.service';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-busqueda',
@@ -15,10 +17,12 @@ export class BusquedaComponent implements OnInit {
   public resp: ApiResponse;  
   error: any;
   public cdata: Array<number>;
+  public tweets: any;
   
 
   constructor(private emotionsService: EmotionsService,
-    private chartData: ChartdataService) { }
+    private chartData: ChartdataService, 
+    private streamingService: StreamingService) { }
 
   ngOnInit() {
     this.chartData.currentData.subscribe(chart => this.cdata = chart)
@@ -38,8 +42,15 @@ onSubmit(form) {
           //muestro respuesta por consola
           console.log(this.resp);
           this.chartData.changeData(this.resp.average);
+         
         },
         error => this.error = error
-        );    
+        ); 
+    this.streamingService.initSocket();
+    this.streamingService.onMessage().subscribe((message:Message) =>
+    {
+      console.log("Mensaje...");
+      console.log(message)
+    } );
   }
 }
