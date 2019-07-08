@@ -35,6 +35,7 @@ class TwitterTools():
     def stream_tweets(self, hash_tag_list, statsObj):
         # This handles Twitter authentification and the connection to Twitter Streaming API
         listener = api.TwitterListener(statsObj, max_num_tweets=20)
+        print("Inicia streaming")
         auth = self.twitter_autenticator.authenticate_twitter_app() 
         stream = Stream(auth, listener)
-        stream.filter(track=hash_tag_list,  languages=["es"], async_ = True)
+        stream.filter(track=hash_tag_list,  languages=["es"], is_async=True)

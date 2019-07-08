@@ -2,7 +2,7 @@ import os
 from datetime import date
 from flask import Flask, request, jsonify, abort
 from flask_restful import Api, Resource
-from flask_socketio import SocketIO, emit,Namespace
+from flask_socketio import SocketIO, emit, Namespace
 import search_engine
 import twitter_tools
 import NLTools
@@ -14,11 +14,15 @@ SINCE_DATE = 'since-date'
 UNTIL_DATE = 'until-date'
 LIMIT = 'limit'
 
-app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__)
 api = Api(app)
 socketio = SocketIO(app)
-ROOMS = {}
 
+class Home(Resource):
+    def get(self):
+        print("Se encuentra en la pagina principal")
+        return 'OK'
+    
 class Search(Resource):
     def get(self):
         #URL principal, requiere en keywords las palabras a buscar y en since-date la fecha         
@@ -26,7 +30,7 @@ class Search(Resource):
         #s_date = request.args.get(SINCE_DATE)
         u_date = request.args.get(UNTIL_DATE)
         tweet_limit = int(request.args.get(LIMIT))
-        print(queries)
+        #print(queries)
         if queries is None or (len(queries) is 1 and len(queries[0]) is 0):
             abort(400)
         
@@ -58,27 +62,8 @@ class Search(Resource):
         resp = app.make_response((jsonify(resp_data), 200)) 
         resp.headers['Access-Control-Allow-Origin'] = '*'
         print(resp.headers)
-        return  resp     
+        return  resp
 
-class StreamListener(StreamListener):
-    def on_status(self, status):
-        TwitterListener.tweet_received(status.text)        
-
-class MyCustomNamespace(Namespace):
-    def on_stream(self, data):
-        print("-----data en my custom space------")
-        print(data)
-        twt = twitter_tools.TwitterTools() #instancia clase twitter_tools        
-        streaming = twt.stream_tweets(data['keywords'], data['limit'])    #obtengo tweets en streaming
-
-    def on_disconnect(self):
-        pass
-
-    @staticmethod
-    def tweet_received(text):
-        emit('tweet_response', {'text': text}, broadcast=True, namespace='/motions-analyzer/streaming')
-    
-        
 class TwitterListener(StreamListener):
     def __init__(self, statsObj, max_num_tweets):
         self.counter = 0
@@ -93,9 +78,11 @@ class TwitterListener(StreamListener):
     def on_data(self, data):
         try:        
             all_data = json.loads(data) #to acces like a JSON object
+            tweet_received(all_data["text"])
             self.counter += 1 #limitate number of tweets for program test  
             
-            self.tweets_list.append(all_data["text"])
+            #self.tweets_list.append(all_data["text"])
+            print(self.counter)
             print(all_data["text"])
             #self.statsObj.add_tweet(all_data["text"])
             #print(all_data) #para control de que es lo que encuentra
@@ -114,10 +101,26 @@ class TwitterListener(StreamListener):
             return False
         print(status)
 
-api.add_resource(Search,'/emotions-analyzer')
-socketio.on_namespace(MyCustomNamespace('/emotions-analyzer/streaming'))
+class Streamer(Namespace):
+    def on_stream(self, data):
+        print("-----data en streamer------")
+        print(data)
+        twt = twitter_tools.TwitterTools() #instancia clase twitter_tools        
+        twt.stream_tweets('peru', 1)    #obtengo tweets en streaming
+        print("Mando mensaje")
+        emit('streamresponse', {'stream_tweet': "hola"}, namespace='/emotions-analyzer/streaming')
+        
 
+
+    def on_disconnect(self):
+        pass
+
+def tweet_received(text):
+        print("envio tweet")
+        socketio.emit('streamresponse', {'stream_tweet': text}, namespace='/emotions-analyzer/streaming')
+
+api.add_resource(Search,'/emotions-analyzer')
+api.add_resource(Home,'/')
+socketio.on_namespace(Streamer('/emotions-analyzer/streaming'))
 if __name__ == '__main__':
-    socketio.run(app)
-    #app.run(host='0.0.0.0',port=5000)
-    #app.run(debug=True)
+    socketio.run(app, debug=True)

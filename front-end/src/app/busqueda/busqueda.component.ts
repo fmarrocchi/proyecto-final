@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse, EmotionsService } from '../emotions.service';
-import{ StreamingService} from '../streaming.service';
+import{ StreamingService, StreamResponse} from '../streaming.service';
 import {NgForm} from '@angular/forms';
 import { ChartdataService } from '../chartdata.service';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-busqueda',
@@ -25,7 +24,13 @@ export class BusquedaComponent implements OnInit {
     private streamingService: StreamingService) { }
 
   ngOnInit() {
-    this.chartData.currentData.subscribe(chart => this.cdata = chart)
+    this.chartData.currentData.subscribe(chart => this.cdata = chart);
+    this.streamingService.initSocket();
+    this.streamingService.onMessage().subscribe((tweet:StreamResponse) =>
+    {
+      console.log("Mensaje...");
+      console.log(tweet)
+    } );
   }
 
 onSubmit(form) { 
@@ -46,11 +51,7 @@ onSubmit(form) {
         },
         error => this.error = error
         ); 
-    this.streamingService.initSocket();
-    this.streamingService.onMessage().subscribe((message:Message) =>
-    {
-      console.log("Mensaje...");
-      console.log(message)
-    } );
+    
+    this.streamingService.send(keywords,cant);   
   }
 }

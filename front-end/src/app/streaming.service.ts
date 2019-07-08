@@ -1,29 +1,41 @@
 import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
-import { HttpClient, HttpParams, HttpErrorResponse} from '@angular/common/http';
-import { Observable, throwError, Subject  } from 'rxjs';
-import * as socketIo from 'socket.io-client';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Observable } from 'rxjs';
+import io from 'socket.io-client';
 
-export interface ApiResponse {
-  streaming_tweets: Array<string>
+export interface StreamResponse {
+  stream_tweet: string
 }
 
-@Injectable()
+
+@Injectable({ 
+    providedIn: 'root'
+})
 export class StreamingService {
     private socket;
+    private count: number;
 
+    constructor() {
+        this.count =0;
+     }
     public initSocket(): void {
-        this.socket = socketIo('http://127.0.0.1:5000/emotions-analyzer/streaming');
+        this.socket = io('http://127.0.0.1:5000/emotions-analyzer/streaming')
     }
 
-    public send(message: Message): void {
-        this.socket.emit('message', message);
+    public send(keyword: string, limit: number ): void {
+        var data = {
+            'keywords': keyword,
+            'limit': limit
+        }
+        //this.socket.emit('stream', keyword);
+        this.socket.emit('stream', data);
     }
-
-    public onMessage(): Observable<Message> {
-        return new Observable<Message>(observer => {
-            this.socket.on('message', (data: Message) => observer.next(data));
+    //observer.next(data)
+    public onMessage(): Observable<StreamResponse> {
+        return new Observable<StreamResponse>(observer => {
+            this.socket.on('streamresponse', (data: StreamResponse) => 
+            {this.count = this.count+1; 
+                console.log(this.count);
+                observer.next(data)});
         });
     }
-  }
+}
