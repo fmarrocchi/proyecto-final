@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrendsComponent implements OnInit {
 
-  trends: Array<string> = ["#Hola", "#que", "#noseeeee"]
-  constructor() { }
+  trends: Array<string> = ["#Topic", "#Topic", "#Topic", "#Topic", "#Topic"]
 
   ngOnInit() {
   }

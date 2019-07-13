@@ -620,7 +620,7 @@ service section css
     margin-bottom:60px;
 }
 .head_title h2{
-    font-size:3.125rem;
+    font-size:2.125rem;
     color:#223d61;
 }
 .head_title p{
@@ -1065,5 +1065,5 @@ ul li.filter{
 }
 .ourmap {
     width: 100%;
-    height: 700px;
+    height: 400px;
 }
