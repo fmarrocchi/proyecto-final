@@ -2,6 +2,7 @@ from string import punctuation
 import nltk
 from nltk.tokenize import TweetTokenizer
 
+
 class NLTools():
     def __init__(self):
        

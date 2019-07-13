@@ -8,6 +8,10 @@ import twitter_credentials
 import json
 
 ARGENTINA_WOE_ID = 23424747
+MODE_CONJUNCTION = 1
+MODE_DISJUNCTION = 0
+OP_CONJ = " AND "
+OP_DISJ = " OR "
 
 class TwitterAuthenticator():
     
@@ -22,17 +26,30 @@ class TwitterTools():
         self.twitter_autenticator = TwitterAuthenticator() 
         self.tweets = []   
 
-    def search_tweets(self, hash_tag_list, until_date, total):
+    def search_tweets(self, hash_tag_list, until_date, total, mode):
         # This handles Twitter authentification 
-        #Si pasamos lista de palabras busca que esten todas, hay que buscar una por una
+        #keywords_list: lista de palabras a buscar
+        #until_date: fecha limite de busqueda
+        #total: cantidad de tweets
+        #mode: 1 para conjuncion, 0 para disyuncion, default is 0
         
         auth = self.twitter_autenticator.authenticate_twitter_app() 
         api = tw.API(auth)
+        query = ""
+        op = OP_DISJ
+        if mode is MODE_CONJUNCTION:
+            op = OP_CONJ
         for key in hash_tag_list:
-            query = key+" -filter:retweets"
-            tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
-            for status in tweetslist:
-                self.tweets.append(status.full_text)
+            if query is "":
+                query = query+key
+            else:
+                query = query+op+key
+
+        query = query+" -filter:retweets"
+        print(query)
+        tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
+        for status in tweetslist:
+            self.tweets.append(status.full_text)
 
         return self.tweets
 
@@ -97,7 +114,8 @@ class TwitterListener(StreamListener):
             return False
         print(status)
 
-#date = "2019-1-1"
-#hashtag=["#missculta","#got"]
+#date = "2019-07-12"
+#hashtag=["#macriangustiado", "#lasmentirasdecambiemos"]
 #prueba = TwitterTools()
-#prueba.search_tweets(hashtag,date)
+#res = prueba.search_tweets(hashtag, date, 50, 1)
+#print(res)

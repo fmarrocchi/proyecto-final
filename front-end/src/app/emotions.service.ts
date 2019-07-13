@@ -30,8 +30,8 @@ export class EmotionsService {
 
   //fecha es un string con el formato YYYY-MM-DD
   //keywords es un string con la palabra clave a buscar
-  getEmotions(keywords: string, fecha: string, cant_tweets: number): Observable<ApiResponse>{
-    var params = new HttpParams().set('keywords',keywords).set('until-date',fecha).set('limit','50').set('limit',cant_tweets.toString());
+  getEmotions(keywords: string, fecha: string, cant_tweets: number, operacion: number): Observable<ApiResponse>{
+    var params = new HttpParams().set('keywords',keywords).set('until-date',fecha).set('limit','50').set('limit',cant_tweets.toString()).set('operation',operacion.toString());
     return this.http.get<ApiResponse>("http://127.0.0.1:5000/emotions-analyzer",{params}).pipe(
       catchError(this.handleError)
     )

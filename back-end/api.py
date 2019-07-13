@@ -11,6 +11,7 @@ KEYWORDS = 'keywords'
 SINCE_DATE = 'since-date'
 UNTIL_DATE = 'until-date'
 LIMIT = 'limit'
+OPERATION = 'operation'
 
 app = Flask(__name__, instance_relative_config=True)
 api = Api(app)
@@ -22,6 +23,7 @@ class Search(Resource):
         #s_date = request.args.get(SINCE_DATE)
         u_date = request.args.get(UNTIL_DATE)
         tweet_limit = int(request.args.get(LIMIT))
+        operation = int(request.args.get(OPERATION))
         if queries is None or (len(queries) is 1 and len(queries[0]) is 0):
             abort(400)
         
@@ -34,7 +36,7 @@ class Search(Resource):
         """ buscador = search_engine.Search_Engine()
         twt = twitter_tools.TwitterTools()
         
-        tweets_list = twt.search_tweets(queries, u_date, tweet_limit)#obtengo tweets
+        tweets_list = twt.search_tweets(queries, u_date, tweet_limit, operation)#obtengo tweets
 
         #streaming
 

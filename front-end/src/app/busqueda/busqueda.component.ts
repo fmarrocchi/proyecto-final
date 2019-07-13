@@ -13,6 +13,7 @@ export class BusquedaComponent implements OnInit {
   public hashtags="";
   public fecha_hasta = new Date().toISOString().substring(0,10);
   public limite = 100; 
+  public operacion = 0;
   public resp: ApiResponse;  
   error: any;
   public cdata: Array<number>;
@@ -32,7 +33,8 @@ onSubmit(form) {
     var keywords:string = form.value.keywords;
     var fecha:string = new Date(form.value.fecha_hasta).toISOString().substr(0,10);
     var cant:number = form.value.limite;
-    this.emotionsService.getEmotions(keywords, fecha, cant)
+    var op:number = form.value.operacion;
+    this.emotionsService.getEmotions(keywords, fecha, cant, op)
       .subscribe(
         (data:ApiResponse) => {
           this.resp = {
