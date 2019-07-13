@@ -1,8 +1,14 @@
-<div style="width: 500px; height: 500px;">
-    <h1>Realtime</h1>    
-    <!-- Grafico radar--> <!-- Creo que {{ chartRealtime }} no sirve para nada -->
-    <canvas id="realtime">{{ chartRealtime }}</canvas>  
-
-    <!-- Grafico de barras-->  
-    <canvas style="height: 100px;" id="horizontalBar"></canvas>
-</div>
+        <div class="col-sm-6 col-sm-push-6">
+            <div class="signle_service_left">                                           
+                <div class="horizontal_bar">
+                    <h3>Polaridad Tweets</h3>                                 
+                    <!-- Grafico de barras-->  
+                    <canvas  id="horizontalBar"></canvas>
+                </div>
+                <div class="single_service">   
+                    <h3>Emociones</h3>
+                    <!-- Grafico radar--> <!-- Creo que {{ chartRealtime }} no sirve para nada -->
+                    <canvas  id="realtime">{{ chartRealtime }}</canvas>                                                     
+                </div>
+            </div>
+        </div>

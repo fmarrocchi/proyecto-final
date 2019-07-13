@@ -1,7 +1,7 @@
 <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+<![endif]-->
+    <div class='preloader'><div class='loaded'>&nbsp;</div></div>
         <header id="main_menu" class="header navbar-fixed-top">            
             <div class="main_menu_bg">
                 <div class="container">
@@ -21,8 +21,7 @@
                                             <img src="assets/images/logo.png"/>
                                         </a>
                                     </div>
-
-                                   
+                               
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">learn more</a>
@@ -39,9 +38,7 @@
                             </nav>
                         </div>	
                     </div>
-
                 </div>
-
             </div>
         </header> <!--End of header -->
 
@@ -52,16 +49,14 @@
                 <div class="row">
                     <div class="col-sm-12 ">
                         <div class="main_home_slider text-center">
-
-
+                            
                             <div class="single_home_slider">
                                 <div class="home-overlay"></div>
                                 <div class="main_home wow fadeInUp" data-wow-duration="700ms"> 
-
                                     <h2>Buscador de emociones en twitter.</h2>
                                     <div class="separator"></div>
                                     <p class="subtitle">Toda la informacion <br />
-                                        ordenada en un lugar</p>
+                                        ordenada en un solo lugar</p>
                                     <div class="home_btn">
                                         <a href="" class="btn">Learn More</a>
                                     </div>
@@ -71,260 +66,61 @@
                             <div class="single_home_slider">
                                 <div class="home-overlay"></div>
                                 <div class="main_home wow fadeInUp" data-wow-duration="700ms">
-                                    <h2>we are clemo.</h2>
+                                    <h2>Trending Topics</h2>
                                     <div class="separator"></div>
-                                    <p class="subtitle">professionals <br />
-                                        in the creative industries</p>
-                                    <div class="home_btn">
-                                        <a href="" class="btn">Learn More</a>
-                                    </div>
+                                    <p class="subtitle">Lo mas hablado en Argentina ahora!</p>
+                                    <app-trends></app-trends>
                                 </div>
                             </div><!-- End of single_home_slider -->
-
-                            <div class="single_home_slider">
-                                <div class="home-overlay"></div>
-                                <div class="main_home wow fadeInUp" data-wow-duration="700ms">
-                                    <h2>we are clemo.</h2>
-                                    <div class="separator"></div>
-                                    <p class="subtitle">professionals <br />
-                                        in the creative industries</p>
-                                    <div class="home_btn">
-                                        <a href="" class="btn">Learn More</a>
-                                    </div>
-                                </div>
-                            </div><!-- End of single_home_slider -->
-
                         </div>
                     </div>
                 </div>
             </div>
         </section><!-- End of Home Section -->
 
-        <!-- Service Section -->
-        <section id="service" class="service sections lightbg">
+        <!-- Busqueda Section -->
+        <section id="service" class="contactus">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="head_title text-center">
-                                <h1>Trending topics en Argentina ahora!</h1>
-                        </div>                        
-
-                        <div class="main_service_area"> 
-                            <div class="single_service_area">
-                             
-                            </div><!-- End of single service area -->
-                            <div class="single_service_area  margin-top-80">
+                        <div class="main_contact sections"> 
+                            <div class="single_service_area ">
                                 <div class="row">
-                                    <div class="col-sm-6 col-sm-push-6">
-                                        <div class="signle_service_left">
-                                            <app-trends></app-trends>
-                                        </div>
-                                    </div>
+                                    <app-chart></app-chart>  
 
                                     <div class="col-sm-5 col-sm-pull-6">
                                         <div class="single_service">                                    
-                                                                                                  
+                                            <div class="head_title text-center">
+                                                <h2>Hace tu busqueda</h2>
+                                            </div>        
+                                                <app-busqueda></app-busqueda>                                                        
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="head_title text-center">
-                                <h1>Hace tu busqueda</h1>
-                            </div>
                             <div class="single_service_area  margin-top-80">
+                                    <h2>Tweets analizados</h2>                                 
+                                    <app-tweets-list></app-tweets-list> 
                                 <div class="row">
-
                                     <div class="col-sm-6 col-sm-push-6">
                                         <div class="signle_service_left">
-                                            <app-chart></app-chart>
+                                               
+                                          
                                         </div>
                                     </div>
-
                                     <div class="col-sm-5 col-sm-pull-6">
-                                        <div class="single_service">                                    
-                                            <app-busqueda></app-busqueda>                                                         
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div><!-- End of single service area -->
-
-                            <div class="single_service_area margin-top-80">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="signle_service_left">
-                                            <app-tweets-list></app-tweets-list>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-sm-push-1">
-                                        <div class="single_service">
-                                            <h3>print</h3>
-                                            <h2>design</h2>
-                                            <div class="separator2"></div>
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                                                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  </p>
-
-                                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-                                                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-
-                                            <a href="" class="btn btn-default">learn more</a>
+                                        <div class="single_service">   
+                                                                                                 
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- End of single service area -->
+
                         </div>
                     </div><!-- End of col-sm-12 -->
                 </div><!-- End of row -->
             </div><!-- End of Container -->
-        </section><!-- End of Service Section -->
-
-        <!-- Clients Section -->
-        <section id="clients" class="clients sections">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="main_clients_area text-center">
-                            <div class="head_title">
-                                <h1>clients say’s</h1>
-                            </div><!-- End of head title -->
-
-                            <div id="example3" class="slider-pro">
-                                <div class="sp-slides sps_slider">
-                                    <div class="sp-slide">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_left_text text-right">
-                                                        <h4 class="sp-layer" 
-                                                            data-horizontal="right" data-vertical="0" data-width="81%"
-                                                            data-show-transition="left" data-show-delay="200">
-                                                            frank sims
-                                                        </h4>
-
-                                                        <div class="separator sp-layer sp-black" data-horizontal="340" data-vertical="70"></div>
-
-                                                        <p class="sp-layer" 
-                                                           data-horizontal="right" data-vertical="100" data-width="81%" 
-                                                           data-show-transition="left" data-show-delay="400">
-                                                            photographer
-                                                        </p>
-
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_right_text text-left">
-                                                        <p class="sp-layer right_sp_layer" data-width="100%">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                            </div>
-                                        </div><!-- End of col-sm-12 -->
-                                    </div>
-                                    <div class="sp-slide">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_left_text text-right">
-                                                        <h4 class="sp-layer" 
-                                                            data-horizontal="right" data-vertical="0" data-width="81%"
-                                                            data-show-transition="left" data-show-delay="200">
-                                                            frank sims
-                                                        </h4>
-
-                                                        <div class="separator sp-layer sp-black" data-horizontal="340" data-vertical="70"></div>
-
-                                                        <p class="sp-layer" 
-                                                           data-horizontal="right" data-vertical="100" data-width="81%" 
-                                                           data-show-transition="left" data-show-delay="400">
-                                                            photographer
-                                                        </p>
-
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_right_text text-left">
-                                                        <p class="sp-layer right_sp_layer" data-width="100%">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                            </div>
-                                        </div><!-- End of col-sm-12 -->
-                                    </div>
-                                    <div class="sp-slide">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_left_text text-right">
-                                                        <h4 class="sp-layer" 
-                                                            data-horizontal="right" data-vertical="0" data-width="81%"
-                                                            data-show-transition="left" data-show-delay="200">
-                                                            frank sims
-                                                        </h4>
-
-                                                        <div class="separator sp-layer sp-black" data-horizontal="340" data-vertical="70"></div>
-
-                                                        <p class="sp-layer" 
-                                                           data-horizontal="right" data-vertical="100" data-width="81%" 
-                                                           data-show-transition="left" data-show-delay="400">
-                                                            photographer
-                                                        </p>
-
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_right_text text-left">
-                                                        <p class="sp-layer right_sp_layer" data-width="100%">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                            </div>
-                                        </div><!-- End of col-sm-12 -->
-                                    </div>
-                                    <div class="sp-slide">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_left_text text-right">
-                                                        <h4 class="sp-layer" 
-                                                            data-horizontal="right" data-vertical="0" data-width="81%"
-                                                            data-show-transition="left" data-show-delay="200">
-                                                            frank sims
-                                                        </h4>
-
-                                                        <div class="separator sp-layer sp-black" data-horizontal="340" data-vertical="70"></div>
-
-                                                        <p class="sp-layer" 
-                                                           data-horizontal="right" data-vertical="100" data-width="81%" 
-                                                           data-show-transition="left" data-show-delay="400">
-                                                            photographer
-                                                        </p>
-
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                                <div class="col-sm-6 col-xs-6">
-                                                    <div class="single_right_text text-left">
-                                                        <p class="sp-layer right_sp_layer" data-width="100%">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                                                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                                                    </div>
-                                                </div><!-- End of col-sm-6 -->
-                                            </div>
-                                        </div><!-- End of col-sm-12 -->
-                                    </div>
-                                </div>
-
-                                <div class="sp-thumbnails">
-                                    <img class="sp-thumbnail" src="assets/images/c1.png"/>
-                                    <img class="sp-thumbnail" src="assets/images/c1.png"/>
-                                    <img class="sp-thumbnail" src="assets/images/c1.png"/>
-                                    <img class="sp-thumbnail" src="assets/images/c1.png"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End of col-sm-12 -->
-                </div><!-- End of row -->
-            </div><!-- End of Contaier -->
-        </section><!-- End of portfolio Section --> 
-
+        </section><!-- End of Busqueda Section -->
 
         <!-- Contact Section -->
         <section id="contact" class="contact">

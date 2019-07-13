@@ -1,10 +1,4 @@
 
-
-/*
-Author: Bootstrapthemes
-Author URI: http://www.bootstrapthemes.co
-*/
-
 /* Portrait tablets and medium desktops */
 @media (max-width: 1199px) {
     body {
@@ -88,6 +82,13 @@ Author URI: http://www.bootstrapthemes.co
         width:100%;
     }
 
+    .horizontal_bar{
+        width: 10%;
+        height: 20%;
+        margin-bottom:40px;
+        color: #ff0000;
+    }
+
     .main_team_area .team{
         margin-bottom:40px;
     }
@@ -161,6 +162,7 @@ Author URI: http://www.bootstrapthemes.co
         line-height: 30px;
         margin-right: 5px;
     }
+   
 
 }
 
