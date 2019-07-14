@@ -55,6 +55,7 @@ onSubmit(form) {
         },
         error => this.error = error
         );    
+    this.keywords = new Array();
   }
 
   updateChart(){    
