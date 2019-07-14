@@ -10,14 +10,16 @@ import { TweetsListService } from '../tweets-list.service';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  public hashtags="";
   public fecha_hasta = new Date().toISOString().substring(0,10);
+  public key="";
+  public keywords: Array<string>;
   public limite = 100; 
   public operacion = 0;
   public resp: ApiResponse;  
   error: any;
   public cdata: Array<number>;
   public tweets: Array<string>;
+  public disable: number =0;
   
 
   constructor(private emotionsService: EmotionsService,
@@ -25,16 +27,21 @@ export class BusquedaComponent implements OnInit {
     private twList:TweetsListService) { }
 
   ngOnInit() {
+    this.keywords = new Array();
     this.chartData.currentData.subscribe(chart => this.cdata = chart);
     this.twList.currentTweets.subscribe(tweets => this.tweets = tweets)
   }
 
 onSubmit(form) { 
-    var keywords:string = form.value.keywords;
+    var keywords:string = form.value.key;
+    if (keywords !== ""){
+      this.keywords.push(keywords)
+    }
     var fecha:string = new Date(form.value.fecha_hasta).toISOString().substr(0,10);
     var cant:number = form.value.limite;
     var op:number = form.value.operacion;
-    this.emotionsService.getEmotions(keywords, fecha, cant, op)
+    form.value.key = "";
+    this.emotionsService.getEmotions(this.keywords, fecha, cant, op)
       .subscribe(
         (data:ApiResponse) => {
           this.resp = {
@@ -51,12 +58,19 @@ onSubmit(form) {
   }
 
   updateChart(){    
-    console.log("Nuevo "+this.resp.average);
     this.chartData.changeData(this.resp.average);
   }
 
   updateTweetsList(){
     this.twList.changeData(this.resp.tweets, this.resp.emotions)
+  }
+
+  agregarKeyword(){
+    if(this.key !== "")
+      this.disable = this.keywords.push(this.key);
+    this.key="";
+    console.log(this.keywords);
+    
   }
   
 }

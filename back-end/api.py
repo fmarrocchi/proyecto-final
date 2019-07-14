@@ -33,7 +33,7 @@ class Search(Resource):
         if tweet_limit is None:
             tweet_limit = 500
 
-        """ buscador = search_engine.Search_Engine()
+        buscador = search_engine.Search_Engine()
         twt = twitter_tools.TwitterTools()
         
         tweets_list = twt.search_tweets(queries, u_date, tweet_limit, operation)#obtengo tweets
@@ -51,10 +51,10 @@ class Search(Resource):
             "tweets" : tweets_list,
             "emotions" : dicts_list,
             "porcentaje_total" : emocionesTotal
-        }"""
-        resp_data = {}
+        }
+        """resp_data = {}
         with open(os.path.relpath('../back-end/datos_pruebas/datos-prueba.json'), encoding="utf-8") as file:
-            resp_data = json.load(file)
+            resp_data = json.load(file)"""
 
         #para permitir requests de cualquier dominio
         #evaluar reemplazar por libreria CORS, porque impide el uso de cookies

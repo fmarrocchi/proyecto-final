@@ -3,8 +3,13 @@
 
   <div class="form-group">
     <label>Ingrese hashtag de busqueda</label>
-    <input type="text"  [(ngModel)] = "hashtags" name="keywords" class="form-control" id="hashtags" required>
-    <p>Hashtags a buscar: {{hashtags}}</p>
+    <input type="text"  value="" name="key" [(ngModel)]="key" class="form-control" id="key" required>
+    <button type="button" (click)="agregarKeyword()" class="btn btn-default" [disabled]="disable > 5">Agregar</button>
+    <div>
+      <ul>
+        <li style="display: inline" *ngFor="let item of keywords"> {{ item }} </li>
+      </ul>
+    </div>    
     <div class="form-group btn-group btn-group-toggle">
       <label class="btn btn-secondary active">
         <input type="radio" name="operacion" value=1 [(ngModel)]="operacion" autocomplete="off"> Conjuncion
@@ -12,7 +17,6 @@
       <label class="btn btn-secondary">
         <input type="radio" name="operacion" value=0 [(ngModel)]="operacion" autocomplete="off"> Disyuncion
       </label>
-      <p>Valor de operacion {{ operacion }}</p>
     </div>
   </div>
 
