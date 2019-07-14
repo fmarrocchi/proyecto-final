@@ -50,40 +50,98 @@ export class ChartComponent implements OnInit {
       data: {
         labels: ['Enojo', 'Anticipacion', 'Repugnancia', 'Miedo', 'Alegria', 'Tristeza', 'Sorpresa', 'Confianza'],
         datasets: [{
-          label: "Porcentaje emociones",
-          data: [1, 1, 3, 5, 1, 0, 4, 2],
+          //Enojo
+          data: [1, 0, 0, 0, 0, 0, 0, 0],
           backgroundColor: [
-            'rgba(231, 76, 60, 0.2)', //enojo
-            'rgba(234, 156, 18, 0.2)', //anticipacion
-            'rgba(165, 105, 189, 0.2)', //repugnancia
-            'rgba(34, 153, 84, 0.2)', //miedo
-            'rgba(244, 208, 63, 0.2)', //alegria
-            'rgba(121, 134, 203, 0.2)', //tristeza  
-            'rgba(84, 153, 199, 0.2)', //sorpresa
-            'rgba(46, 204, 113, 0.2)'  //confianza
+            'rgba(231, 76, 60, 0.4)' 
           ],
-          borderColor: [
-              'rgba(231, 76, 60, 1)', //enojo
-              'rgba(234, 156, 18, 1)', //anticipacion
-              'rgba(165, 105, 189, 1)', //repugnancia
-              'rgba(34, 153, 84, 1)',  //miedo
-              'rgba(244, 208, 63, 1)', //alegria
-              'rgba(121, 134, 203, 1)', //tristeza 
-              'rgba(84, 153, 199, 1)', //sorpresa
-              'rgba(46, 204, 113, 1)' //confianza
-          ],
+          pointBackgroundColor: "transparent",
+          pointBorderColor: "transparent",
           borderWidth: 1
-          }]
+          },
+          {
+            //Anticipacion
+            data: [0, 2, 0, 0, 0, 0, 0, 0],
+            backgroundColor: [
+              'rgba(245, 127, 23, 0.4)'
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          },
+          {
+            //Repugnancia
+            data: [0, 0, 3, 0, 0, 0, 0, 0],
+            backgroundColor: [
+              'rgba(165, 105, 189, 0.4)'
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          },  
+          {
+            //Miedo
+            data: [0, 0, 0, 2, 0, 0, 0, 0],
+            backgroundColor: [
+              'rgba(34, 153, 84, 0.4)'
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          },    
+          {
+            //Alegria
+            data: [0, 0, 0, 0, 3, 0, 0, 0],
+            backgroundColor: [
+              'rgba(255, 234, 0, 0.4)'
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          },
+          {
+            //Tristeza
+            data: [0, 0, 0, 0, 0, 1, 0, 0],
+            backgroundColor: [
+              'rgba(101, 31, 255, 0.4)'    
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          },
+          {
+            //Sorpresa
+            data: [0, 0, 0, 0, 0, 0, 5, 0],
+            backgroundColor: [
+              'rgba(84, 153, 199, 0.4)'
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          },
+          {
+            //Confianza
+            data: [0, 0, 0, 0, 0, 0, 0, 2],
+            backgroundColor: [
+              'rgba(174, 234, 0, 0.4)'  
+            ],
+            pointBackgroundColor: "transparent",
+            pointBorderColor: "transparent",
+            borderWidth: 1
+          }
+        ]
         },
-      options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }});
+        options: {
+          scale: {
+            ticks: {
+              min: -1
+            }
+          },
+          legend: {
+              display: false
+          }
+      }    
+    });
   }
 
   createBarChart(){
@@ -93,7 +151,6 @@ export class ChartComponent implements OnInit {
         labels: ['Positivo', 'Negativo'],
         datasets: [{
             data: [1,5],
-            label: "Polaridad tweets",
             backgroundColor: [ 'rgba(197, 17, 98, 0.2)','rgba(38, 198, 218, 0.2)'],
             borderColor: ['rgba(197, 17, 98, 1)', 'rgba(38, 198, 218, 1)'],
             borderWidth: 1
@@ -104,8 +161,9 @@ export class ChartComponent implements OnInit {
 
   updateRadarChart(cdata){
       //Actualiza solo los valores de los datos
-      this.chart.data.datasets[0]['data'] = cdata;
-      this.chart.update()
+      for (var i = 0; i < cdata.length; i++) {
+        this.chart.data.datasets[i]['data'][i] = cdata[i];
+    }
   }
 
   updateBarChart(datosPieChart){
