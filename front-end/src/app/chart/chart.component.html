@@ -1,14 +1,16 @@
-        <div class="col-sm-6 col-sm-push-6">
-            <div class="signle_service_left">                                           
-                <div class="horizontal_bar">
-                    <h3>Polaridad Tweets</h3>                                 
-                    <!-- Grafico de barras-->  
-                    <canvas  id="horizontalBar"></canvas>
-                </div>
-                <div class="single_service">   
-                    <h3>Emociones</h3>
-                    <!-- Grafico radar--> <!-- Creo que {{ chartRealtime }} no sirve para nada -->
-                    <canvas  id="realtime">{{ chartRealtime }}</canvas>                                                     
-                </div>
-            </div>
+<div class="col-sm-6 col-sm-push-6">
+     <!-- Grafico radar--> <!-- Creo que {{ chartRealtime }} no sirve para nada -->
+     <div style= "width: 120%; " >      
+            <p style= "text-align: center; ">Emociones</p>    
+            <canvas  style= "margin-right: 80px"id="realtime">{{ chartRealtime }}</canvas>
         </div>
+
+    <!-- Grafico de barras-->  
+    <div style="width: 50%; height: 25%; margin-left: 30%; margin-top: 40px; ">
+        <p style= "text-align: center;">Polaridad Tweets</p>                                 
+        <canvas id="horizontalBar"></canvas>
+    </div>    
+    
+   
+</div>
+

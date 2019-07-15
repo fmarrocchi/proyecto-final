@@ -140,7 +140,7 @@ export class ChartComponent implements OnInit {
           legend: {
               display: false
           }
-      }    
+        }    
     });
   }
 
@@ -150,12 +150,24 @@ export class ChartComponent implements OnInit {
       data: {
         labels: ['Positivo', 'Negativo'],
         datasets: [{
-            data: [1,5],
-            backgroundColor: [ 'rgba(197, 17, 98, 0.2)','rgba(38, 198, 218, 0.2)'],
+            data: [3,5],
+            backgroundColor: [ 'rgba(197, 17, 98, 0.4)','rgba(38, 198, 218, 0.4)'],
             borderColor: ['rgba(197, 17, 98, 1)', 'rgba(38, 198, 218, 1)'],
-            borderWidth: 1
-            }]
-      }
+            borderWidth: 0.5
+        }]
+      },
+      options: {
+        legend: {
+            display: false
+        },
+        scales: {
+          yAxes: [{
+            barPercentage: 1,
+            
+          }]
+        },
+        
+      } 
     });
     }
 

@@ -10,7 +10,7 @@ Author URI: http://bootstrapthemes.co
 html,
 body {
     background-color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     color: #656565;
     width: 100%;
     padding: 0;
@@ -217,7 +217,7 @@ p:last-child {
 Section
 */
 .sections {
-    padding-top:85px;
+    padding-top:10px;
     padding-bottom: 105px;
     overflow: hidden;
 }
@@ -547,9 +547,9 @@ input::-ms-input-placeholder {
 .dropdown-menu>li>a{
     line-height: 4;
 }
-/*.navbar-nav>li>.dropdown-menu{
+.navbar-nav>li>.dropdown-menu{
     margin-top:20px;
-}*/
+}
 
 
 /*home section*/
@@ -621,7 +621,7 @@ service section css
 }
 .head_title h2{
     font-size:2.125rem;
-    color:#223d61;
+    color:#000;
 }
 .head_title p{
     font-size:1rem;
