@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TrendsService, TrendsResponse } from '../trends.service';
 
 @Component({
   selector: 'app-trends',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrendsComponent implements OnInit {
 
-  trends: Array<string> = ["#Topic", "#Topic", "#Topic", "#Topic", "#Topic"]
+  public trends:Array<string> = ["#Topic", "#Topic", "#Topic", "#Topic", "#Topic"];
+  error: any;
+  //
+
+  constructor(private trendsService:TrendsService){}
 
   ngOnInit() {
+    this.trendsService.getTrends().subscribe((data:TrendsResponse) => {
+      this.trends = data.trending_topics;
+    },
+    error => this.error = error)
   }
 
 }

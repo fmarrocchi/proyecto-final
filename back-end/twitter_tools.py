@@ -59,7 +59,9 @@ class TwitterTools():
         arg_trends = api.trends_place(ARGENTINA_WOE_ID)
         trends = json.loads(json.dumps(arg_trends))
         toRet = [] 
-        for trend in trends[0]["trends"]:
+        for i in range(10):
+            trend = trends[0]["trends"][i]
+            print(trend)
             toRet.append(trend["name"])
         return toRet
 
