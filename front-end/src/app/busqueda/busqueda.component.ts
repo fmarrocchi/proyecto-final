@@ -3,6 +3,7 @@ import { ApiResponse, EmotionsService } from '../emotions.service';
 import {NgForm} from '@angular/forms';
 import { ChartdataService } from '../chartdata.service';
 import { TweetsListService } from '../tweets-list.service';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-busqueda',
@@ -10,7 +11,7 @@ import { TweetsListService } from '../tweets-list.service';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  public fecha_hasta = new Date().toISOString().substring(0,10);
+  public fecha_hasta: NgbDate ;
   public key="";
   public keywords: Array<string>;
   public limite = 100; 
@@ -24,10 +25,13 @@ export class BusquedaComponent implements OnInit {
 
   constructor(private emotionsService: EmotionsService,
     private chartData: ChartdataService,
-    private twList:TweetsListService) { }
+    private twList:TweetsListService,
+    private ngbcal: NgbCalendar,
+    private parserFormatter: NgbDateParserFormatter) { }
 
   ngOnInit() {
     this.keywords = new Array();
+    this.fecha_hasta = this.ngbcal.getToday();
     this.chartData.currentData.subscribe(chart => this.cdata = chart);
     this.twList.currentTweets.subscribe(tweets => this.tweets = tweets)
   }
@@ -37,11 +41,11 @@ onSubmit(form) {
     if (keywords !== ""){
       this.keywords.push(keywords)
     }
-    var fecha:string = new Date(form.value.fecha_hasta).toISOString().substr(0,10);
+    var fecha: NgbDate = form.value.fecha_hasta;
     var cant:number = form.value.limite;
     var op:number = form.value.operacion;
     form.value.key = "";
-    this.emotionsService.getEmotions(this.keywords, fecha, cant, op)
+    this.emotionsService.getEmotions(this.keywords, this.parserFormatter.format(fecha), cant, op)
       .subscribe(
         (data:ApiResponse) => {
           this.resp = {
@@ -70,8 +74,13 @@ onSubmit(form) {
     if(this.key !== "")
       this.disable = this.keywords.push(this.key);
     this.key="";
-    console.log(this.keywords);
     
+  }
+
+  eliminarKey(indice){
+    console.log(indice);
+    this.keywords.splice(indice,1);
+    console.log(this.keywords)
   }
   
 }
