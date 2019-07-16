@@ -23,10 +23,7 @@ export class TweetsListComponent implements OnInit {
     "Surprise": 'rgba(84, 153, 199, 1)',
     "Trust": 'rgba(46, 204, 113, 1)',
     "Neutro": 'black'
-  };  
-  
-  elements: any = [];
-  headElements = ['ID', 'First', 'Last', 'Handle'];
+  }
 
   public tweets: Array<string>;
   public emotions: Array<EmotionDic>;
@@ -51,12 +48,6 @@ export class TweetsListComponent implements OnInit {
         }
       }
     });    
-    for (let i = 1; i <= 10; i++) {
-      this.elements.push({
-        id: i, first: 'User ' + i, last: 'Name ' + i, handle:
-          'Handle ' + i
-      });
-    }
   }
 
   getColor(indice){
@@ -65,5 +56,3 @@ export class TweetsListComponent implements OnInit {
   }
 
 }
-
-
