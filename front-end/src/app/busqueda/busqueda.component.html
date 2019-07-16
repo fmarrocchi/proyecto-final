@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(emotionsForm)" #emotionsForm="ngForm"  >
+<form (ngSubmit)="onSubmit(emotionsForm)" #emotionsForm="ngForm" >
 <!--Usamos la directiva ngModel para el two-way data binding-->
   <div class="form-group "  >
     <div class="input-group" >
@@ -10,11 +10,11 @@
 
     <div>
       <ul>
-        <li style="display: inline" *ngFor="let item of keywords; let indice=index"><a (click)="eliminarKey(indice)"> {{ item }} </a></li>
+        <li style="display: inline" *ngFor="let item of keywords"> {{ item }} </li>
       </ul>
     </div>    
 
-    <div class="btn-group " style="transform:scale(0.7)">
+    <div class="btn-group " style="transform:scale(0.7); margin-left: 10%">
       <label class="btn-izq btn-secondary active" >
         <input type="radio" name="operacion"  value=1 [(ngModel)]="operacion" autocomplete="off" checked> Conjuncion
       </label>
@@ -23,7 +23,7 @@
       </label>
     </div>   
 
-    <div class="form-group">
+    <div class="form-group" style="margin-top: 15px">
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
         [(ngModel)] = "fecha_hasta" id="fecha_hasta"  name="fecha_hasta" ngbDatepicker #d="ngbDatepicker"
@@ -42,7 +42,7 @@
       <p> {{limite}} </p>
     </div>
 
-    <button style="justify-content: center;" type="submit"  class="btn-2">Buscar</button>  
+    <button style="margin-left: 30%"  type="submit"  class="btn-2">Buscar</button>  
   </div>
 </form>
 
