@@ -1,10 +1,13 @@
-length: {{tweets.length}}
-<div  *ngIf="tweets.length > 0 " class="list-group">
-  <h2>Tweets analizados</h2> 
-  <div class="list-group-item card" *ngFor="let tweet of tweets; let indice=index">   
-      <img class="card-img-left" src="../../assets/images/twitter-logo.png" />    
-      <div class="card-body">               
-        <p class="card-text" id="{{ indice+1 }}" [ngStyle] = "{'color': getColor(indice)}">{{ tweet }}</p>
-      </div>    
+<div *ngIf="tweets.length > 0">
+  <h2 style="margin-left: 15px" >Tweets analizados</h2> 
+  <div  style="overflow-y: scroll;border-width: 2px; border-color: black; margin-top: 16px; max-height: 400px; padding: 1rem; " class="list-group">
+    <div  class="list-group-item card" *ngFor="let tweet of tweets; let indice=index">   
+        <span class="float-left">
+            <img style="width:4%; height:3%;" src="../../assets/images/twitter-logo.png" />
+        </span>
+        <span class="float-right card-body card-text " style="font-size:0.8rem;" id="{{ indice+1 }}" [ngStyle] = "{'color': getColor(indice)}">
+            {{ tweet }}
+        </span>          
+    </div>
   </div>
 </div>

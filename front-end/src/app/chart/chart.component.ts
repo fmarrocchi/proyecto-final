@@ -51,7 +51,7 @@ export class ChartComponent implements OnInit {
         labels: ['Enojo', 'Anticipacion', 'Repugnancia', 'Miedo', 'Alegria', 'Tristeza', 'Sorpresa', 'Confianza'],
         datasets: [{
           //Enojo
-          data: [1, 0, 0, 0, 0, 0, 0, 0],
+          data: [0.1, 0, 0, 0, 0, 0, 0, 0],
           backgroundColor: [
             'rgba(231, 76, 60, 0.4)' 
           ],
@@ -61,7 +61,7 @@ export class ChartComponent implements OnInit {
           },
           {
             //Anticipacion
-            data: [0, 2, 0, 0, 0, 0, 0, 0],
+            data: [0, 0.2, 0, 0, 0, 0, 0, 0],
             backgroundColor: [
               'rgba(245, 127, 23, 0.4)'
             ],
@@ -71,7 +71,7 @@ export class ChartComponent implements OnInit {
           },
           {
             //Repugnancia
-            data: [0, 0, 3, 0, 0, 0, 0, 0],
+            data: [0, 0, 0.3, 0, 0, 0, 0, 0],
             backgroundColor: [
               'rgba(165, 105, 189, 0.4)'
             ],
@@ -81,7 +81,7 @@ export class ChartComponent implements OnInit {
           },  
           {
             //Miedo
-            data: [0, 0, 0, 2, 0, 0, 0, 0],
+            data: [0, 0, 0, 0.2, 0, 0, 0, 0],
             backgroundColor: [
               'rgba(34, 153, 84, 0.4)'
             ],
@@ -91,7 +91,7 @@ export class ChartComponent implements OnInit {
           },    
           {
             //Alegria
-            data: [0, 0, 0, 0, 3, 0, 0, 0],
+            data: [0, 0, 0, 0, 0.3, 0, 0, 0],
             backgroundColor: [
               'rgba(255, 234, 0, 0.4)'
             ],
@@ -101,7 +101,7 @@ export class ChartComponent implements OnInit {
           },
           {
             //Tristeza
-            data: [0, 0, 0, 0, 0, 1, 0, 0],
+            data: [0, 0, 0, 0, 0, 0.1, 0, 0],
             backgroundColor: [
               'rgba(101, 31, 255, 0.4)'    
             ],
@@ -111,7 +111,7 @@ export class ChartComponent implements OnInit {
           },
           {
             //Sorpresa
-            data: [0, 0, 0, 0, 0, 0, 5, 0],
+            data: [0, 0, 0, 0, 0, 0, 0.5, 0],
             backgroundColor: [
               'rgba(84, 153, 199, 0.4)'
             ],
@@ -121,7 +121,7 @@ export class ChartComponent implements OnInit {
           },
           {
             //Confianza
-            data: [0, 0, 0, 0, 0, 0, 0, 2],
+            data: [0, 0, 0, 0, 0, 0, 0, 0.2],
             backgroundColor: [
               'rgba(174, 234, 0, 0.4)'  
             ],
@@ -150,7 +150,7 @@ export class ChartComponent implements OnInit {
       data: {
         labels: ['Positivo', 'Negativo'],
         datasets: [{
-            data: [3,5],
+            data: [0.3,0.5],
             backgroundColor: [ 'rgba(197, 17, 98, 0.4)','rgba(38, 198, 218, 0.4)'],
             borderColor: ['rgba(197, 17, 98, 1)', 'rgba(38, 198, 218, 1)'],
             borderWidth: 0.5
@@ -167,7 +167,8 @@ export class ChartComponent implements OnInit {
           }],
           xAxes: [{
             ticks: {
-              min: 0
+              min: 0,
+              max:5
             }
           }]
         }
