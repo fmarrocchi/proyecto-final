@@ -76,7 +76,7 @@ onSubmit(form) {
     this.key="";
     
   }
-
+  // a ver si funcionaaaa
   eliminarKey(indice){
     console.log(indice);
     this.keywords.splice(indice,1);
