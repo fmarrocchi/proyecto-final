@@ -51,9 +51,9 @@
     .menu-scroll .navbar-default .navbar-collapse, .navbar-default .navbar-form {
         margin-top: 12px;
     }
-    .btn{
+    /*.btn{
         padding: 0.5em;
-    }
+    }*/
     .main_events_area .single_events.events_btn .btn{
         margin-top:30px;
     }
@@ -80,13 +80,6 @@
     }
     .signle_service_left img{
         width:100%;
-    }
-
-    .horizontal_bar{
-        width: 10%;
-        height: 20%;
-        margin-bottom:40px;
-        color: #ff0000;
     }
 
     .main_team_area .team{

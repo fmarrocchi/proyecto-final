@@ -134,13 +134,13 @@ export class ChartComponent implements OnInit {
         options: {
           scale: {
             ticks: {
-              min: -1
+              min: -0.08
             }
           },
           legend: {
               display: false
           }
-      }    
+        }    
     });
   }
 
@@ -150,21 +150,37 @@ export class ChartComponent implements OnInit {
       data: {
         labels: ['Positivo', 'Negativo'],
         datasets: [{
-            data: [1,5],
-            backgroundColor: [ 'rgba(197, 17, 98, 0.2)','rgba(38, 198, 218, 0.2)'],
+            data: [3,5],
+            backgroundColor: [ 'rgba(197, 17, 98, 0.4)','rgba(38, 198, 218, 0.4)'],
             borderColor: ['rgba(197, 17, 98, 1)', 'rgba(38, 198, 218, 1)'],
-            borderWidth: 1
-            }]
-      }
+            borderWidth: 0.5
+        }]
+      },
+      options: {
+        legend: {
+            display: false
+        },
+        scales: {
+          yAxes: [{
+            barPercentage: 1,
+            
+          }],
+          xAxes: [{
+            ticks: {
+              min: 0
+            }
+          }]
+        }
+      } 
     });
     }
 
   updateRadarChart(cdata){
       //Actualiza solo los valores de los datos
-    for (var i = 0; i < cdata.length; i++) {
-      this.chart.data.datasets[i]['data'][i] = cdata[i];
-    }
-    this.chart.update();
+      for (var i = 0; i < cdata.length; i++) {
+        this.chart.data.datasets[i]['data'][i] = cdata[i];        
+      }
+      this.chart.update()
   }
 
   updateBarChart(datosPieChart){

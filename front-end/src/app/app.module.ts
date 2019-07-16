@@ -10,6 +10,9 @@ import { ChartComponent } from './chart/chart.component';
 import { TweetsListComponent } from './tweets-list/tweets-list.component';
 import { TrendsComponent } from './trends/trends.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,8 @@ import { TrendsComponent } from './trends/trends.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
