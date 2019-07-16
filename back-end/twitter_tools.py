@@ -12,6 +12,7 @@ MODE_CONJUNCTION = 1
 MODE_DISJUNCTION = 0
 OP_CONJ = " AND "
 OP_DISJ = " OR "
+EXC_MSG = "Se ha alcanzado el limite de consultas permitidas"
 
 class TwitterAuthenticator():
     
@@ -46,22 +47,27 @@ class TwitterTools():
                 query = query+op+key
 
         query = query+" -filter:retweets"
-        print(query)
-        tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
-        for status in tweetslist:
-            self.tweets.append(status.full_text)
+        try:
+            tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
+            print("Llego")
+            for status in tweetslist:
+                self.tweets.append(status.full_text)
+        except tw.TweepError:
+            raise ExcededLimit()
 
         return self.tweets
 
     def trends(self):
         auth = self.twitter_autenticator.authenticate_twitter_app()
         api = tw.API(auth)
-        arg_trends = api.trends_place(ARGENTINA_WOE_ID)
+        try:
+            arg_trends = api.trends_place(ARGENTINA_WOE_ID)
+        except tw.RateLimitError:
+            raise ExcededLimit()
         trends = json.loads(json.dumps(arg_trends))
         toRet = [] 
         for i in range(10):
             trend = trends[0]["trends"][i]
-            print(trend)
             toRet.append(trend["name"])
         return toRet
 
@@ -97,7 +103,6 @@ class TwitterListener(StreamListener):
             self.counter += 1 #limitate number of tweets for program test  
             
             self.tweets_list.append(all_data["full_text"])
-            print(all_data["full_text"])
             #self.statsObj.add_tweet(all_data["text"])
             #print(all_data["text"]) #para control de que es lo que encuentra
             
@@ -115,6 +120,11 @@ class TwitterListener(StreamListener):
             # Returning False on_data method in case rate limit occurs.
             return False
         print(status)
+
+class ExcededLimit(Exception):
+    #modela error al sobrepasar limite de consultas
+    def __init__(self):
+        Exception.__init__(self,EXC_MSG) 
 
 #date = "2019-07-12"
 #hashtag=["#macriangustiado", "#lasmentirasdecambiemos"]

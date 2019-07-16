@@ -35,16 +35,17 @@ class Search(Resource):
 
         buscador = search_engine.Search_Engine()
         twt = twitter_tools.TwitterTools()
+        try:
+            tweets_list = twt.search_tweets(queries, u_date, tweet_limit, operation)#obtengo tweets            
+        except twitter_tools.ExcededLimit:
+            #necesita tiempo
+            abort(400)
         
-        tweets_list = twt.search_tweets(queries, u_date, tweet_limit, operation)#obtengo tweets
-
-        #streaming
-
         nl_tool = NLTools.NLTools()
         tokens_lists = nl_tool.tokenize(tweets_list)#tokenizo tweets
-        
+    
         dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
-
+        #ver que capaz no se logro obtener la cantidad limite, habria que psar la long de la lista
         emocionesTotal = buscador.getPorcentajeEmocionesTotal(tweet_limit) 
         
         resp_data = {
@@ -66,7 +67,11 @@ class Search(Resource):
 class TrendingTopics(Resource):
     def get(self):
         twt = twitter_tools.TwitterTools()
-        toRet = twt.trends()
+        try:
+            toRet = twt.trends()
+        except twitter_tools.ExcededLimit:
+            #necesita tiempo
+            abort(400)
         resp_data = {
             "trending_topics": toRet
         }
