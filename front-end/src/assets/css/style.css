@@ -108,11 +108,13 @@ input[type="color"],
 .uneditable-input {
     outline: none;
 }
+/*
 .form-control {
     border: 1px solid rgba(0, 0, 0, 0.08);
     font-size: 16px;
     height: 45px;
 }
+
 .form-control {
     display: inline-block;
     width: 60%;
@@ -133,7 +135,7 @@ input[type="color"],
 }
 .form-control:focus {
     border-color: #5e9a28;
-}
+}*/
 
 h1,
 h2,
@@ -340,7 +342,56 @@ Button
     border-color: #522bac;
 }
 
-.btn {
+.btn-izq {
+    display: inline-block;
+    min-width: 180px;
+    padding: .4em;
+    height: 45px;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    font-size: 1.125rem;
+    background-color: #000;
+    transition: .5s; 
+    border:1px solid #000;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    margin-top: 20px;
+    justify-content: center;
+}
+.btn-der {
+    display: inline-block;
+    min-width: 180px;
+    padding: .4em;
+    height: 45px;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    font-size: 1.125rem;
+    background-color: #000;
+    transition: .5s; 
+    border:1px solid #000;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.btn-der:hover {
+    background-color:#ffcb93;
+    color: #000;
+    text-decoration: none;
+    border:1px solid #ffcb93;
+}
+
+.btn-izq:hover {
+    background-color:#ffcb93;
+    color: #000;
+    text-decoration: none;
+    border:1px solid #ffcb93;
+}
+
+.btn-2 {
     display: inline-block;
     min-width: 180px;
     padding: .4em;
@@ -357,18 +408,19 @@ Button
     border:1px solid #000;
 
 }
-.btn:hover {
+.btn-2:hover {
     background-color:#ffcb93;
     color: #000;
     text-decoration: none;
     border:1px solid #ffcb93;
 }
-.btn-default {
+
+.btn-2-default {
     color: #333;
     background-color: #fff;
     border-color: #ccc;
 }
-.btn-default:hover {
+.btn-2-default:hover {
     color: #333;
     background-color: #fff;
     border-color:#000;
@@ -463,7 +515,7 @@ input::-ms-input-placeholder {
 /*for image bg*/
 
 
-/*.img-bg{
+.img-bg{
   background: url(../images/home-msg.jpg) no-repeat center top fixed;
   background-size
   -moz-background-size: cover;
@@ -472,7 +524,7 @@ input::-ms-input-placeholder {
   background-size: cover;
   width: 100%;
   overflow: hidden;
-}*/
+}
 /* navbar section */
 .menu-scroll {
     padding-top: 0px;
@@ -617,7 +669,7 @@ input::-ms-input-placeholder {
 service section css
 ==========================================================================*/
 .head_title{
-    margin-bottom:60px;
+    margin-bottom:40px;
 }
 .head_title h2{
     font-size:2.125rem;
@@ -709,6 +761,7 @@ service section css
     font-weight: 300;
     margin-bottom:10px;
 }
+/*
 .main_contact .form-control {
     display: inline-block;
     width: 100%;
@@ -735,7 +788,7 @@ service section css
 .main_contact textarea.form-control {
     height: auto;
     border-bottom: 1px solid #333;
-}
+}*/
 
 .main_contact .single_message_right_info{
     display: inline-block;

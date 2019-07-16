@@ -134,7 +134,7 @@ export class ChartComponent implements OnInit {
         options: {
           scale: {
             ticks: {
-              min: -1
+              min: -0.08
             }
           },
           legend: {
@@ -164,9 +164,13 @@ export class ChartComponent implements OnInit {
           yAxes: [{
             barPercentage: 1,
             
+          }],
+          xAxes: [{
+            ticks: {
+              min: 0
+            }
           }]
-        },
-        
+        }
       } 
     });
     }
@@ -174,8 +178,9 @@ export class ChartComponent implements OnInit {
   updateRadarChart(cdata){
       //Actualiza solo los valores de los datos
       for (var i = 0; i < cdata.length; i++) {
-        this.chart.data.datasets[i]['data'][i] = cdata[i];
-    }
+        this.chart.data.datasets[i]['data'][i] = cdata[i];        
+      }
+      this.chart.update()
   }
 
   updateBarChart(datosPieChart){

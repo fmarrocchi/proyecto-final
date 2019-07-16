@@ -7,7 +7,7 @@ import { EmotionDic } from './emotions.service';
 })
 export class TweetsListService {
 
-  private tweetsSource = new BehaviorSubject([""]);
+  private tweetsSource = new BehaviorSubject([]);
   private emotionsSource = new BehaviorSubject([]);
   currentTweets = this.tweetsSource.asObservable();
   currentEmotions = this.emotionsSource.asObservable();
