@@ -40,7 +40,7 @@ export class TweetsListComponent implements OnInit {
       console.log(this.emotions)
       for(var i=0; i<this.emotions.length; i++){   
         this.emo_col[i] = "Neutro";
-        let cont = 0;     
+        let cont = 0;   
         for(let e in this.emotions[i]){
           if(e != 'Negative' && e != 'Positive' && this.emotions[i][e] > cont){ //Solo incluimos emociones de plutchik
             this.emo_col[i] = e;
