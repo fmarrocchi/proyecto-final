@@ -46,7 +46,7 @@ class Search(Resource):
     
         dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
         #ver que capaz no se logro obtener la cantidad limite, habria que psar la long de la lista
-        emocionesTotal = buscador.getPorcentajeEmocionesTotal(tweet_limit) 
+        emocionesTotal = buscador.getPorcentajeEmocionesTotal(len(tweets_list))
         
         resp_data = {
             "tweets" : tweets_list,
