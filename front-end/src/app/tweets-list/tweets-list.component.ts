@@ -15,13 +15,13 @@ export class TweetsListComponent implements OnInit {
     "Positive": 'rgba(197, 17, 98, 1)',
     "Negative": 'rgba(38, 198, 218, 1)',
     "Anger": 'rgba(231, 76, 60, 1)',
-    "Anticipation": 'rgba(234, 156, 18, 1)',
+    "Anticipation": 'rgba(245, 127, 23, 1)',
     "Disgust": 'rgba(165, 105, 189, 1)',
     "Fear": 'rgba(34, 153, 84, 1)',
-    "Joy": 'rgba(244, 208, 63, 1)',
-    "Sadness": 'rgba(121, 134, 203, 1)',
+    "Joy": 'rgba(255, 234, 0, 1)',
+    "Sadness": 'rgba(101, 31, 255, 1)',
     "Surprise": 'rgba(84, 153, 199, 1)',
-    "Trust": 'rgba(46, 204, 113, 1)',
+    "Trust": 'rgba(174, 234, 0, 1)',
     "Neutro": 'black'
   }
 
@@ -37,15 +37,17 @@ export class TweetsListComponent implements OnInit {
     this.twList.currentEmotions.subscribe(emotions => {
       this.emotions = emotions;
       this.emo_col = new Array(this.emotions.length);
+      console.log(this.emotions)
       for(var i=0; i<this.emotions.length; i++){   
         this.emo_col[i] = "Neutro";
         let cont = 0;   
         for(let e in this.emotions[i]){
-          if( e != 'Positive' && e != 'Negative' && this.emotions[i][e] > cont){
+          if(e != 'Negative' && e != 'Positive' && this.emotions[i][e] > cont){ //Solo incluimos emociones de plutchik
             this.emo_col[i] = e;
             cont = this.emotions[i][e]
           }
         }
+        console.log(this.emo_col)
       }
     });    
   }

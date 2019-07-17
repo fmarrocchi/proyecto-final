@@ -33,11 +33,6 @@ export class ChartComponent implements OnInit {
           this.cdata[i-2] = data[i];
         }
 
-        console.log("---datos pos y neg....");
-        console.log(this.bardata);
-        console.log("---datos emociones....");
-        console.log(this.cdata);
-
         this.updateRadarChart(this.cdata);
         this.updateBarChart(this.bardata)
       });
