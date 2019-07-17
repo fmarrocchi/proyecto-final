@@ -344,16 +344,14 @@ Button
 
 .btn-izq {
     display: inline-block;
-    min-width: 180px;
+    min-width: 140px;
     padding: .4em;
-    height: 45px;
+    height: 40px;
     text-align: center;
-    color: #fff;
+    color: #000;
     margin: 0;
     font-size: 1.125rem;
-    background-color: #000;
     transition: .5s; 
-    border:1px solid #000;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     margin-top: 20px;
@@ -361,16 +359,14 @@ Button
 }
 .btn-der {
     display: inline-block;
-    min-width: 180px;
+    min-width: 140px;
     padding: .4em;
-    height: 45px;
+    height: 40px;
     text-align: center;
-    color: #fff;
+    color: #000;
     margin: 0;
     font-size: 1.125rem;
-    background-color: #000;
     transition: .5s; 
-    border:1px solid #000;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     margin-top: 20px;
@@ -379,14 +375,12 @@ Button
 
 .btn-der:hover {
     background-color:#ffcb93;
-    color: #000;
-    text-decoration: none;
+        text-decoration: none;
     border:1px solid #ffcb93;
 }
 
 .btn-izq:hover {
     background-color:#ffcb93;
-    color: #000;
     text-decoration: none;
     border:1px solid #ffcb93;
 }
@@ -402,11 +396,34 @@ Button
     margin: 0;
     font-size: 1.125rem;
     border-radius: 50px;
-    margin-top: 20px;
+    margin-top: 15px;
     background-color: #000;
     transition: .5s; 
     border:1px solid #000;
 
+}
+.btn-3 {
+    display: inline-block;
+    min-width: 180px;
+    padding: .4em;
+    height: 45px;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+    margin: 0;
+    font-size: 1rem;
+    border-radius: 50px;
+    margin-top: 15px;
+    background-color: #000;
+    transition: .5s; 
+    border:1px solid #000;
+
+}
+.btn-3:hover {
+    background-color:#ffcb93;
+    color: #000;
+    text-decoration: none;
+    border:1px solid #ffcb93;
 }
 .btn-2:hover {
     background-color:#ffcb93;

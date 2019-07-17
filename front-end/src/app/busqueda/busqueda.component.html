@@ -10,11 +10,12 @@
 
     <div>
       <ul>
-        <li style="display: inline" *ngFor="let item of keywords"> {{ item }} </li>
+        <!--Holaaaa-->
+        <li style="display: inline" *ngFor="let item of keywords; let indice=index"><a (click)="eliminarKey(indice)"> {{ item }} </a></li>
       </ul>
     </div>    
 
-    <div class="btn-group " style="transform:scale(0.7); margin-left: 10%">
+    <div class="btn-group " style="transform:scale(0.7); margin-left: 20%">
       <label class="btn-izq btn-secondary active" >
         <input type="radio" name="operacion"  value=1 [(ngModel)]="operacion" autocomplete="off" checked> Conjuncion
       </label>
@@ -36,10 +37,12 @@
     </div>
     
 
-    <div class="form-group ">
+    <div style="margin-top: 30px">
       <label>Limitar tweets buscados</label>
-      <input for="cant_tweets" type="range" min="1" max="3000" [(ngModel)] = "limite" name="limite" class="form-control"  id="limite">
+      <input  for="cant_tweets" type="range" min="1" max="3000" [(ngModel)] = "limite" name="limite" id="limite">
       <p> {{limite}} </p>
+
+      
     </div>
 
     <button style="margin-left: 30%"  type="submit"  class="btn-2">Buscar</button>  

@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ChartdataService {
 
-  private dataSource = new BehaviorSubject([0, 1, 3, 5, 1, 0, 4, 2, 2, 1]);
+  private dataSource = new BehaviorSubject([0.1, 0.3, 0.1, 0.1, 0.2, 0.1, 0.2, 0.3, 0.001, 0.3]);
   currentData = this.dataSource.asObservable();
 
   constructor() { }
