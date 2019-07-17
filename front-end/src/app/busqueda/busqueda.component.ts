@@ -66,8 +66,8 @@ onSubmit(form) {
           
           this.updateTweetsList();
         },
-        error => this.error = error
-        );    
+        error => this.toastr.error("Revise su consulta o intentelo de nuevo en unos minutos", "Error")
+      );    
     this.keywords = new Array();
   }
 

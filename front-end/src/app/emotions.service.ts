@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 export interface ApiResponse {
   tweets: Array<string>;
@@ -26,7 +27,8 @@ export interface EmotionDic {
 })
 export class EmotionsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private toastr: ToastrService) { }
 
   //fecha es un string con el formato YYYY-MM-DD
   //keywords es un string con la palabra clave a buscar
@@ -36,9 +38,7 @@ export class EmotionsService {
       params = params.append("keywords", key)
     })
     console.log(params.toString())
-    return this.http.get<ApiResponse>("http://127.0.0.1:5000/emotions-analyzer",{params}).pipe(
-      catchError(this.handleError)
-    )
+    return this.http.get<ApiResponse>("http://127.0.0.1:5000/emotions-analyzer",{params})
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -48,6 +48,7 @@ export class EmotionsService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
+      
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
