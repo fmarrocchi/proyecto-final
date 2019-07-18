@@ -37,17 +37,16 @@ export class TweetsListComponent implements OnInit {
     this.twList.currentEmotions.subscribe(emotions => {
       this.emotions = emotions;
       this.emo_col = new Array(this.emotions.length);
-      console.log(this.emotions)
       for(var i=0; i<this.emotions.length; i++){   
         this.emo_col[i] = "Neutro";
         let cont = 0;   
         for(let e in this.emotions[i]){
+          console.log(e+" "+this.emotions[i][e]);
           if(e != 'Negative' && e != 'Positive' && this.emotions[i][e] > cont){ //Solo incluimos emociones de plutchik
             this.emo_col[i] = e;
             cont = this.emotions[i][e]
           }
         }
-        console.log(this.emo_col)
       }
     });    
   }

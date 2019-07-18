@@ -1,5 +1,5 @@
 <div *ngIf="tweets.length > 0">
-  <h2 style="margin-left: 15px" >Tweets analizados:</h2> {{tweets.length}}
+  <h2 style="margin-left: 15px" >Tweets analizados: {{tweets.length}}</h2> 
   <div  style="overflow-y: scroll;border-width: 2px; border-color: black; margin-top: 16px; max-height: 400px; padding: 1rem; " class="list-group">
     <div  class="row list-group-item card" *ngFor="let tweet of tweets; let indice=index">   
         <span class="col-4 float-left">
