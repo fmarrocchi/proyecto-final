@@ -1,6 +1,6 @@
-<div *ngIf="tweets.length > 0">
-  <h2 style="margin-left: 15px" >Tweets analizados: {{tweets.length}}</h2> 
-  <div  style="overflow-y: scroll;border-width: 2px; border-color: black; margin-top: 16px; max-height: 400px; padding: 1rem; " class="list-group">
+<div *ngIf="tweets.length > 0"  >
+  <h2 style="margin-left: 15px; margin-top: 20px " >Tweets analizados: {{tweets.length}}</h2> 
+  <div  style="overflow-y: scroll; box-shadow: 2px 2px 3px #999;  border-width: 2px; border-color: black; margin-top: 16px; max-height: 400px; padding: 1rem; " class="list-group">
     <div  class="row list-group-item card" *ngFor="let tweet of tweets; let indice=index">   
         <span class="col-4 float-left">
           <img style="width:4%; height:3%;" src="../../assets/images/twitter-logo.png" />
