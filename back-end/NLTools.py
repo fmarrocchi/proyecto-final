@@ -50,6 +50,8 @@ class NLTools():
         #print("-----------------------------------cant elementos tweet_tokens------------------------------------")
         #print(len(self.tweet_tokens_list))
         #print(self.tweet_tokens_list[0])
+        print(self.tweet_tokens_list[0])
+        print(self.tweet_tokens_list[1])
         return self.tweet_tokens_list
 
     def reduce_lengthening(self, text):

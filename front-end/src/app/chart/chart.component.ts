@@ -43,7 +43,7 @@ export class ChartComponent implements OnInit {
     this.chart = new Chart("realtime", {
       type: 'radar',
       data: {
-        labels: ['Enojo', 'Anticipacion', 'Repugnancia', 'Miedo', 'Alegria', 'Tristeza', 'Sorpresa', 'Confianza'],
+        labels: ['Enojo', 'Anticipación', 'Repugnancia', 'Miedo', 'Alegría', 'Tristeza', 'Sorpresa', 'Confianza'],
         datasets: [{
           //Enojo
           data: [0, 0, 0, 0, 0, 0, 0, 0],
