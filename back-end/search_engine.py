@@ -45,7 +45,11 @@ class Search_Engine():
                         contador = self.emotions.get(e)    #tomo valor de emocion
                         contador_tweet[e]= contador_tweet.get(e) + float(emotion[e]) #sumo el valor de la emocion al contador del tweet actual 
                         self.emotions[e] = contador + float(emotion[e])  #sumo el valor de la emocion al contador de emociones global 
+            print("Emociones tweet")
+            print(contador_tweet)
             self.emotions_by_tweet.append(contador_tweet)
+        print("Emociones total")
+        print(self.emotions_by_tweet)
         return self.emotions_by_tweet
 
     def total_emotion(self, emotion):

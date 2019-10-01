@@ -49,9 +49,10 @@ class TwitterTools():
         query = query+" -filter:retweets"
         try:
             tweetslist = tw.Cursor(api.search, tweet_mode='extended', q=query, lang='es', until= until_date).items(total)        
-            print("Llego")
+            
             for status in tweetslist:
                 self.tweets.append(status.full_text)
+                print("Tweet"+status.full_text)
         except tw.TweepError:
             raise ExcededLimit()
 

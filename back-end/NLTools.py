@@ -45,6 +45,7 @@ class NLTools():
                     self.listatokens.append(token) #agrego token a la lista de tokens del tweet actual
             #agrego lista de tokens del tweet actual a la lista de tokens para cada tweet
             self.tweet_tokens_list.append(self.listatokens)
+            print(self.listatokens)
             self.listatokens = [] #vacio lista para vovler a crear una lista para el proximo tweet
            
         #print("-----------------------------------cant elementos tweet_tokens------------------------------------")
