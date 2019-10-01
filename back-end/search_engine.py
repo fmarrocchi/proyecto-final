@@ -23,12 +23,14 @@ class Search_Engine():
         return self.data
     
     def getPorcentajeEmocionesTotal(self, total_tweets):
-        emotions = self.emotions
-        porcentaje_total = self.porcentaje_total
-        #calculo porcentaje de cada emocion segun el total de tweets obtenidos
-        for e in emotions:
-            porcentaje_total.append(emotions[e] / total_tweets)
-        return porcentaje_total
+        if total_tweets > 0:
+            emotions = self.emotions
+            porcentaje_total = self.porcentaje_total
+            #calculo porcentaje de cada emocion segun el total de tweets obtenidos
+            for e in emotions:
+                porcentaje_total.append(emotions[e] / total_tweets)
+            return porcentaje_total
+        else: return 0
 
     #funcion que busca palabras en el lexicon y las cuenta
     def compute_emotions(self, tweet_tokens_list):
