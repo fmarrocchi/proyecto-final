@@ -19,8 +19,7 @@ api = Api(app)
 class Search(Resource):
     def get(self):
         #URL principal, requiere en keywords las palabras a buscar y en since-date la fecha         
-        queries = request.args.getlist(KEYWORDS)          
-        #s_date = request.args.get(SINCE_DATE)
+        queries = request.args.getlist(KEYWORDS) 
         u_date = request.args.get(UNTIL_DATE)
         tweet_limit = int(request.args.get(LIMIT))
         operation = int(request.args.get(OPERATION))
@@ -36,31 +35,29 @@ class Search(Resource):
         buscador = search_engine.Search_Engine()
         twt = twitter_tools.TwitterTools()
         try:
-            tweets_list = twt.search_tweets(queries, u_date, tweet_limit, operation)#obtengo tweets            
+            tweets_list = twt.search_tweets(queries, u_date, tweet_limit, operation)            
         except twitter_tools.ExcededLimit:
-            #necesita tiempo
             abort(400)
         
         nl_tool = NLTools.NLTools()
-        tokens_lists = nl_tool.tokenize(tweets_list)#tokenizo tweets
+        tokens_lists = nl_tool.tokenize(tweets_list)
     
-        dicts_list = buscador.compute_emotions(tokens_lists)#calculo emociones
-        #ver que capaz no se logro obtener la cantidad limite, habria que psar la long de la lista
+        dicts_list = buscador.compute_emotions(tokens_lists)
         emocionesTotal = buscador.getPorcentajeEmocionesTotal(len(tweets_list))
         
         resp_data = {
             "tweets" : tweets_list,
             "emotions" : dicts_list,
-            "porcentaje_total" : emocionesTotal
+            "average" : emocionesTotal
         }
         """resp_data = {}
         with open(os.path.relpath('../back-end/datos_pruebas/datos-prueba.json'), encoding="utf-8") as file:
             resp_data = json.load(file)"""
 
-        #para permitir requests de cualquier dominio
-        #evaluar reemplazar por libreria CORS, porque impide el uso de cookies
+        #to allow requests from any domain
         resp = app.make_response((jsonify(resp_data), 200)) 
         resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'GET'
         print(resp.headers)
         return  resp
 
@@ -70,7 +67,6 @@ class TrendingTopics(Resource):
         try:
             toRet = twt.trends()
         except twitter_tools.ExcededLimit:
-            #necesita tiempo
             abort(400)
         resp_data = {
             "trending_topics": toRet

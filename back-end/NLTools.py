@@ -39,18 +39,12 @@ class NLTools():
             for token in tokens: 
                 #sacar signos de puntuacion al tweet actual tokenizado
                 if (token not in self.non_words):
-                    n_token = self.reduce_lengthening(token)
-                    #print(n_token)
+                    n_token = self.reduce_lengthening(token)                    
                     self.tokens.append(n_token) #agrego token a la lista de tokens de todos los tweets
                     self.listatokens.append(token) #agrego token a la lista de tokens del tweet actual
             #agrego lista de tokens del tweet actual a la lista de tokens para cada tweet
             self.tweet_tokens_list.append(self.listatokens)
-            print(self.listatokens)
-            self.listatokens = [] #vacio lista para vovler a crear una lista para el proximo tweet
-           
-        #print("-----------------------------------cant elementos tweet_tokens------------------------------------")
-        #print(len(self.tweet_tokens_list))
-        #print(self.tweet_tokens_list[0])
+            self.listatokens = [] #vacio lista para vovler a crear una lista para el proximo tweet        
         return self.tweet_tokens_list
 
     def reduce_lengthening(self, text):

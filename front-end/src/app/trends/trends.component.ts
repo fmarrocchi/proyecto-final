@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TrendsService, TrendsResponse } from '../trends.service';
+import { TrendsService, TrendsResponse } from '../services/trends.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-trends',
@@ -12,13 +13,13 @@ export class TrendsComponent implements OnInit {
   error: any;
   //
 
-  constructor(private trendsService:TrendsService){}
+  constructor(private trendsService:TrendsService, private toastr: ToastrService){}
 
   ngOnInit() {
     this.trendsService.getTrends().subscribe((data:TrendsResponse) => {
       this.trends = data.trending_topics;
     },
-    error => this.error = error)
+    error => this.toastr.error("Ha ocurrido un error. Por favor recargue la pagina.", "Error"))
   }
 
 }

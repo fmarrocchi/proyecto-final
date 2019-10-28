@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { ChartdataService } from '../chartdata.service';
+import { ChartdataService } from '../services/chartdata.service';
 
 @Component({
   selector: 'app-chart',

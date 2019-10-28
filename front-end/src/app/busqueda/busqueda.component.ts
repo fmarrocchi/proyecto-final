@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiResponse, EmotionsService } from '../emotions.service';
+import { ApiResponse, EmotionsService } from '../services/emotions.service';
 import {NgForm} from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
-import { ChartdataService } from '../chartdata.service';
-import { TweetsListService } from '../tweets-list.service';
+import { ChartdataService } from '../services/chartdata.service';
+import { TweetsListService } from '../services/tweets-list.service';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -54,11 +54,9 @@ onSubmit(form) {
       .subscribe(
         (data:ApiResponse) => {
           this.resp = {
-          tweets: data["tweets"],
-          emotions: data["emotions"],
-          average: data["porcentaje_total"]};
-          //muestro respuesta por consola
-          console.log(this.resp);
+          tweets: data.tweets,
+          emotions: data.emotions,
+          average: data.average};
           if(this.resp.tweets.length == 0)
             this.toastr.info(this.mensaje_info, this.titulo_info);
           else 
@@ -86,9 +84,7 @@ onSubmit(form) {
     
   }
   eliminarKey(indice){
-    console.log(indice);
     this.keywords.splice(indice,1);
-    console.log(this.keywords)
   }
   
 }

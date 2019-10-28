@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TweetsListService } from '../tweets-list.service';
-import { EmotionDic } from '../emotions.service';
+import { TweetsListService } from '../services/tweets-list.service';
+import { EmotionDic } from '../services/emotions.service';
 
 @Component({
   selector: 'app-tweets-list',
@@ -41,7 +41,6 @@ export class TweetsListComponent implements OnInit {
         this.emo_col[i] = "Neutro";
         let cont = 0;   
         for(let e in this.emotions[i]){
-          console.log(e+" "+this.emotions[i][e]);
           if(e != 'Negative' && e != 'Positive' && this.emotions[i][e] > cont){ //Solo incluimos emociones de plutchik
             this.emo_col[i] = e;
             cont = this.emotions[i][e]
