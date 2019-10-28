@@ -1,28 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ChartdataService } from '../services/chartdata.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnDestroy {
 
     public chart: any;
     cdata: Array<number>=[];
 
     public barChart: any;
     bardata: Array<number>=[];
+
+    subscriptions: Subscription;
   
-  constructor(private chartData: ChartdataService) { }
+  constructor(private chartData: ChartdataService) {
+    this.subscriptions = new Subscription();
+   }
 
   ngOnInit() {
 
       this.createRadarChart();
       this.createBarChart();
 
-      this.chartData.currentData.subscribe(data => {
+      this.subscriptions.add(this.chartData.currentData.subscribe(data => {
         //separo valores en dos arreglos segun cada grafico
         //los primeros dos valores son pos y neg para el grafico de barra
         this.bardata[0] = data[0];
@@ -35,8 +40,12 @@ export class ChartComponent implements OnInit {
 
         this.updateRadarChart(this.cdata);
         this.updateBarChart(this.bardata)
-      });
+      }));
 
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
 
   createRadarChart(){

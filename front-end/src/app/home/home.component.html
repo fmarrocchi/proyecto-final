@@ -1,0 +1,65 @@
+<!-- Home Section -->
+<section id="home" class="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="main_home_slider text-center">
+                    
+                    <div class="single_home_slider">
+                        <div class="home-overlay"></div>
+                        <div class="main_home wow fadeInUp" data-wow-duration="700ms"> 
+                            <h2>Buscador de emociones en Twitter.</h2>
+                            <div class="separator"></div>
+                            <p class="subtitle">Toda la información <br />
+                                ordenada en un solo lugar</p>
+                            <div class="home_btn">
+                                <a href="" class="btn-3">Más Información</a>
+                            </div>
+                        </div>
+                    </div><!-- End of single_home_slider -->
+
+                    <div class="single_home_slider">
+                        <div class="home-overlay"></div>
+                        <div class="main_home wow fadeInUp" data-wow-duration="700ms">
+                            <h2>Trending Topics</h2>
+                            <div class="separator"></div>
+                            <p class="subtitle">Lo más hablado en Argentina ahora!</p>
+                            <app-trends></app-trends>
+                        </div>
+                    </div><!-- End of single_home_slider -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End of Home Section -->
+
+<!-- Busqueda Section -->
+<section id="service" class="contactus">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main_contact sections"> 
+                    <div class="single_service_area ">
+                        <div class="row">
+                            <app-chart></app-chart>  
+
+                            <div class="col-sm-5 col-sm-pull-6">
+                                <div class="single_service">                                    
+                                    <div class="head_title text-center">
+                                        <h2>Hacé tu búsqueda</h2>
+                                    </div>        
+                                        <app-busqueda></app-busqueda>                                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div style="background-color:#F4F4F4;  ">
+                    <div class="single_service_area  margin-top-60" style="width: 60%;  margin-left: 22%">                                                                    
+                            <app-tweets-list></app-tweets-list> 
+                    </div><!-- End of single service area -->
+                </div>
+                </div>
+            </div><!-- End of col-sm-12 -->
+        </div><!-- End of row -->
+    </div><!-- End of Container -->
+</section><!-- End of Busqueda Section -->

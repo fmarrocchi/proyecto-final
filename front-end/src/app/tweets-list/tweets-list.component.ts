@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TweetsListService } from '../services/tweets-list.service';
 import { EmotionDic } from '../services/emotions.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tweets-list',
@@ -9,7 +10,7 @@ import { EmotionDic } from '../services/emotions.service';
 })
 
 
-export class TweetsListComponent implements OnInit {
+export class TweetsListComponent implements OnInit, OnDestroy {
   //valores para el texto de los tweets
   readonly colores = {
     "Positive": 'rgba(197, 17, 98, 1)',
@@ -29,12 +30,15 @@ export class TweetsListComponent implements OnInit {
   public emotions: Array<EmotionDic>;
   //arreglo que mantiene la emocion mas representativa de cada tweet
   public emo_col: Array<string>;
+  subscriptions: Subscription;
 
-  constructor(private twList: TweetsListService) { }
+  constructor(private twList: TweetsListService) { 
+    this.subscriptions = new Subscription();
+  }
 
   ngOnInit() {
-    this.twList.currentTweets.subscribe(tweets => this.tweets = tweets);
-    this.twList.currentEmotions.subscribe(emotions => {
+    this.subscriptions.add(this.twList.currentTweets.subscribe(tweets => this.tweets = tweets));
+    this.subscriptions.add(this.twList.currentEmotions.subscribe(emotions => {
       this.emotions = emotions;
       this.emo_col = new Array(this.emotions.length);
       for(var i=0; i<this.emotions.length; i++){   
@@ -47,7 +51,11 @@ export class TweetsListComponent implements OnInit {
           }
         }
       }
-    });    
+    }));    
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
 
   getColor(indice){

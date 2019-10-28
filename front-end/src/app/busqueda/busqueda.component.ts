@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiResponse, EmotionsService } from '../services/emotions.service';
 import {NgForm} from '@angular/forms';
 
@@ -6,13 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { ChartdataService } from '../services/chartdata.service';
 import { TweetsListService } from '../services/tweets-list.service';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
   styleUrls: ['./busqueda.component.css']
 })
-export class BusquedaComponent implements OnInit {
+export class BusquedaComponent implements OnInit, OnDestroy {
   readonly mensaje_info = "No se obtuvieron resultados. Verifique que su busqueda sea correcta o espere 15 minutos y vuelva a intentarlo";
   readonly titulo_info = "Atención";
   public fecha_hasta: NgbDate ;
@@ -25,20 +26,28 @@ export class BusquedaComponent implements OnInit {
   public cdata: Array<number>;
   public tweets: Array<string>;
   public disable: number =0;
+
   
+  subscriptions: Subscription;  
 
   constructor(private emotionsService: EmotionsService,
     private chartData: ChartdataService,
     private twList:TweetsListService,
     private ngbcal: NgbCalendar,
     private parserFormatter: NgbDateParserFormatter,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) { 
+      this.subscriptions = new Subscription();
+    }
 
   ngOnInit() {
     this.keywords = new Array();
     this.fecha_hasta = this.ngbcal.getToday();
-    this.chartData.currentData.subscribe(chart => this.cdata = chart);
-    this.twList.currentTweets.subscribe(tweets => this.tweets = tweets)
+    this.subscriptions.add(this.chartData.currentData.subscribe(chart => this.cdata = chart));
+    this.subscriptions.add(this.twList.currentTweets.subscribe(tweets => this.tweets = tweets));
+  }
+
+  ngOnDestroy(){
+    this.subscriptions.unsubscribe();
   }
 
 onSubmit(form) { 
@@ -50,7 +59,7 @@ onSubmit(form) {
     var cant:number = form.value.limite;
     var op:number = form.value.operacion;
     form.value.key = "";
-    this.emotionsService.getEmotions(this.keywords, this.parserFormatter.format(fecha), cant, op)
+    this.subscriptions.add(this.emotionsService.getEmotions(this.keywords, this.parserFormatter.format(fecha), cant, op)
       .subscribe(
         (data:ApiResponse) => {
           this.resp = {
@@ -65,7 +74,7 @@ onSubmit(form) {
           this.updateTweetsList();
         },
         error => this.toastr.error("Revise su consulta o intentelo de nuevo en unos minutos", "Error")
-      );    
+      ));    
     this.keywords = new Array();
   }
 

@@ -1,0 +1,16 @@
+.help {
+    padding: 170px 50px;
+}
+
+.help__tittle {
+    padding-bottom: 20px;
+}
+
+.help__subtittle {
+    padding-bottom: 10px;
+}
+
+.help__text {
+    padding-right: 30px;
+    padding-left: 30px;
+}
