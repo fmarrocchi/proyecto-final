@@ -13,6 +13,7 @@ import { TweetsListComponent } from './tweets-list/tweets-list.component';
 import { TrendsComponent } from './trends/trends.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HelpComponent } from './help/help.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BusquedaComponent,
     ChartComponent,
     TweetsListComponent,
-    TrendsComponent
+    TrendsComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
